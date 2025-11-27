@@ -11,14 +11,18 @@ export default defineConfig(({ mode }) => {
     outDir: '../frontend-dist',
   },
   server: {
-    host: "127.0.0.1",
+    // listen on all network interfaces so dev server is reachable externally
+    host: true,
     port: 8080,
+    // allow specific external hostnames to avoid host-check blocking
+    allowedHosts: ['manuelsadosky.tecnica7ldz.edu.ar', 'localhost', '127.0.0.1'],
     watch: {
       ignored: ['**/*.timestamp-*.mjs'],
     },
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:3000',
+        // use env var when provided (frontend/.env VITE_BACKEND_URL), otherwise local backend
+        target: env.VITE_BACKEND_URL || 'http://127.0.0.1:3000',
         changeOrigin: true,
         secure: false,
       },
