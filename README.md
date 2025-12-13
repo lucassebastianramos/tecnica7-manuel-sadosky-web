@@ -209,3 +209,67 @@ Para mantener un historial de cambios limpio y legible, este proyecto utiliza la
 **Ejemplo:**
 `feat(api): agregar endpoint para registro de usuarios`
 `fix(client): corregir validación de formulario de login`
+
+---
+
+# Deployment Guide
+
+## Prerequisites
+- Docker and Docker Compose installed.
+- Node.js 18 used for local builds (Docker images use node:18-slim).
+- Prebuilt frontend assets present in `frontend-dist/`.
+- Prisma schema and migrations present in `prisma/`.
+
+## Build frontend locally
+- Build the frontend outside Docker and copy the output into `frontend-dist/`.
+  - In `frontend/`: `npm ci && npm run build`
+  - Copy `frontend/dist/*` into project root `frontend-dist/`.
+
+## Environment variables
+- Backend runs with `NODE_ENV=production`.
+- Frontend dev proxy uses `frontend/.env`:
+  - `VITE_BACKEND_URL="http://127.0.0.1:3000"`
+
+## Docker build and run
+1. Build and start services:
+   - `docker compose up -d --build`
+2. On first run, Prisma migrations are applied automatically via entrypoint.
+3. App is available:
+   - Direct: `http://localhost:3000`
+   - Via Nginx (if enabled): `https://<your-domain>`
+
+## Nginx TLS setup (optional but recommended)
+1. Place TLS certs in `nginx/certs/`:
+   - `fullchain.pem` (certificate chain)
+   - `privkey.pem` (private key)
+2. Configure domain in `nginx/nginx.conf`:
+   - Set `server_name your.domain.com;`
+3. Expose ports 80 and 443 in your firewall/cloud provider.
+4. DNS: Point your domain `A`/`AAAA` records to the server’s public IP.
+
+## Notes on backend exposure
+- Backend binds to `127.0.0.1` and is not exposed externally.
+- Nginx reverse proxy forwards requests to the app service internally.
+
+## Prisma initialization
+- The Docker image runs `prisma generate` during `postinstall` at build time.
+- At container start, `prisma migrate deploy` is executed before the server.
+- Ensure `DATABASE_URL` is provided to the app service via environment or secrets.
+
+## Common issues and fixes
+- Rollup/Vite native binary errors in Alpine: avoided by using `node:18-slim`.
+- OpenSSL errors with Prisma: `openssl` is installed in images; ensure host supports OpenSSL 1.1+.
+- TypeScript implicit `any` errors: fixed in `src/controllers/campus.controller.ts` and `src/services/campus.service.ts`.
+- Vite dev server external access: `frontend/vite.config.ts` has `server.host = true` and `allowedHosts` configured; backend remains private.
+
+## Operational tips
+- Auto-restart on reboot: Docker Compose with restart policies ensures services start on reboot.
+- Logs:
+  - `docker compose logs -f app`
+  - `docker compose logs -f nginx`
+- Reapply migrations after changes: rebuild image and restart services.
+
+## Further optimizations (optional)
+- Review Vite chunking warnings and adjust code-splitting.
+- Update Browserslist data in CI or build pipeline.
+- Decide whether to allow all hosts in Vite dev server or keep explicit `allowedHosts`.

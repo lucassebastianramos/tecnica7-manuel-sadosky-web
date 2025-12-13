@@ -27,21 +27,21 @@ export const getMyCourses = async (req: AuthenticatedRequest, res: Response, nex
         where: { student_id: me.Student.student_id },
         include: { course: true }
       });
-      const myCourses: any[] = [];
-      for (const c of courses as Array<{ course: any }>) {
+      const myCourses: Record<string, unknown>[] = [];
+      for (const c of courses as Array<{ course: Record<string, unknown> }>) {
         myCourses.push(c.course);
       }
       return res.json(myCourses);
     }
     if (me?.Teacher) {
       const courses = await prisma.courses.findMany({ where: { teacher_id: me.Teacher.teacher_id }, include: { enrollments: true } });
-      return res.json(courses.map(c => ({
+      return res.json(courses.map((c) => ({
         course_id: c.course_id,
         name: c.name,
         description: c.description,
-        year: c.year,
+        year: c.year ?? 0,
         division: c.division,
-        students_count: c.enrollments.length,
+        students_count: Array.isArray(c.enrollments) ? c.enrollments.length : 0,
         created_at: c.created_at,
       })));
     }
@@ -155,10 +155,10 @@ export const getMyRecentMaterials = async (req: AuthenticatedRequest, res: Respo
     let courseIds: number[] = [];
     if (me?.Student) {
       const enrolls = await prisma.enrollments.findMany({ where: { student_id: me.Student.student_id }, select: { course_id: true } });
-      courseIds = enrolls.map(e => e.course_id);
+      courseIds = enrolls.map((e: { course_id: number }) => e.course_id);
     } else if (me?.Teacher) {
       const teaches = await prisma.courses.findMany({ where: { teacher_id: me.Teacher.teacher_id }, select: { course_id: true } });
-      courseIds = teaches.map(c => c.course_id);
+      courseIds = teaches.map((c: { course_id: number }) => c.course_id);
     }
 
     if (courseIds.length === 0) return res.json([]);

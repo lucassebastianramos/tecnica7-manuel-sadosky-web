@@ -17,7 +17,7 @@ export const getMySummary = async (userId: number, role: string) => {
       where: { student_id: me.Student.student_id },
       select: { course_id: true }
     });
-    courseIds = enrollments.map(e => e.course_id);
+    courseIds = enrollments.map((e: { course_id: number }) => e.course_id);
     coursesCount = courseIds.length;
 
     const grades = await prisma.grades.findMany({
@@ -27,17 +27,17 @@ export const getMySummary = async (userId: number, role: string) => {
     });
 
     if (grades.length > 0) {
-      const total = grades.reduce((acc, g) => acc + (g.score / g.max_score), 0);
+      const total = grades.reduce((acc: number, g: { score: number; max_score: number }) => acc + (g.score / g.max_score), 0);
       const avg = total / grades.length * 10;
       averageGrade = Number(avg.toFixed(1));
-      recentGrades = grades.slice(0, 5).map(g => ({ id: g.id, title: g.title, score: g.score, max_score: g.max_score }));
+      recentGrades = grades.slice(0, 5).map((g: { id: number; title: string; score: number; max_score: number }) => ({ id: g.id, title: g.title, score: g.score, max_score: g.max_score }));
     }
   } else if (role === 'PROFESOR' && me?.Teacher) {
     const courses = await prisma.courses.findMany({
       where: { teacher_id: me.Teacher.teacher_id },
       select: { course_id: true }
     });
-    courseIds = courses.map(c => c.course_id);
+    courseIds = courses.map((c: { course_id: number }) => c.course_id);
     coursesCount = courseIds.length;
   }
 

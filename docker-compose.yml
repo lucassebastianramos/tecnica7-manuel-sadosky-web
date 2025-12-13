@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build:
@@ -9,22 +7,9 @@ services:
     container_name: tecnica7-app-container
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-3000}:3000" # Mapea el puerto del host al puerto del contenedor (3000 es el interno)
-    volumes:
-      # Para desarrollo, podrías montar el código fuente para hot-reloading con nodemon
-      - ./src:/usr/src/app/src
-      # - ./public:/usr/src/app/public
-      # Nota: Si montas src, asegúrate de que nodemon esté en las dependencias de producción
-      # o ajusta el Dockerfile para que funcione bien con el montaje de volúmenes en desarrollo.
-      # Por ahora, la imagen se construye con el código y no hay hot-reloading por defecto.
-      # Si quieres hot-reloading:
-      # 1. Asegúrate que nodemon es una dependencia normal (no dev) o instálalo globalmente en la imagen.
-      # 2. Cambia el CMD en Dockerfile a: CMD ["nodemon", "src/server.ts"] (o el script de dev)
-      # 3. Monta los volúmenes como se muestra arriba.
-      # Para producción, no se montan volúmenes de código.
-  # Los scripts SQL se montan en el servicio db (ver más abajo). No se usa Prisma en este proyecto.
+      - "${APP_PORT:-8080}:3000" # Mapea el puerto del host al puerto del contenedor (8080 es el nuevo puerto externo)
     environment:
-      - NODE_ENV=development # O 'development' para desarrollo con hot-reloading
+      - NODE_ENV=production # O 'development' para desarrollo con hot-reloading
       - PORT=3000
       - DATABASE_URL=${DATABASE_URL} # Tomada del .env del host
       - MAIL_HOST=${MAIL_HOST}
@@ -53,7 +38,7 @@ services:
       - "${DB_PORT:-5432}:5432" # Mapea el puerto de PostgreSQL del host al contenedor
     volumes:
       - postgres_data:/var/lib/postgresql/data # Persiste los datos de la BD
-      - ./sql:/docker-entrypoint-initdb.d # Monta los scripts de inicialización
+    
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-tecnica7db}"]
       interval: 10s
@@ -71,7 +56,7 @@ networks:
 
 # Instrucciones para el .env del host (que docker-compose usará):
 #
-# APP_PORT=3000
+# APP_PORT=8080
 #
 # # URL de la base de datos para la aplicación DENTRO de Docker.
 # # El HOST debe ser el nombre del servicio de la base de datos en docker-compose (ej. 'db')
@@ -109,7 +94,7 @@ networks:
 #
 # Ejemplo de .env para docker-compose:
 #
-# APP_PORT=3000
+# APP_PORT=8080
 #
 # # Para el servicio 'db' de PostgreSQL
 # DB_USER=myuser
@@ -158,5 +143,8 @@ networks:
 # en docker-compose, lo que permite que se sobrescriban con un archivo .env.
 # También he actualizado las instrucciones en los comentarios.
 # He añadido APP_PORT para configurar el puerto de la aplicación también desde .env.
+# El backend ahora está expuesto en el puerto 8080 del host por defecto. Configura APP_PORT en .env para cambiarlo.
+# Usa Cloudflare Tunnel gestionado desde el dashboard para conectarte a http://localhost:8080.
+# Si anteriormente usabas cloudflared/nginx locales, ya no son necesarios.
 #
 # Hecho.

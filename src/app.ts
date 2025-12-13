@@ -49,9 +49,21 @@ app.use('/api/radio', radioRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/settings', settingRoutes);
 
-// Middleware para manejar errores 404 (Not Found)
+// SPA fallback: servir index.html para rutas no-API
+app.get('*', (req: Request, res: Response, next: NextFunction) => {
+  if (req.path.startsWith('/api/')) return next();
+  const indexPath = path.join(__dirname, '..', 'public', 'index.html');
+  res.sendFile(indexPath, (err) => {
+    if (err) next(err);
+  });
+});
+
+// Middleware para manejar errores 404 (solo para API)
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ message: 'Resource not found' });
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ message: 'Resource not found' });
+  }
+  next();
 });
 
 // Middleware para manejar errores globales

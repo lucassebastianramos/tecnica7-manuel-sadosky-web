@@ -1,17 +1,28 @@
 # ---- Base Stage ----
 # Usar una imagen base de Node.js. Alpine es ligera.
 # Especificar la versión de Node que coincida con la de desarrollo (ej. LTS)
-FROM node:18-alpine AS base
+FROM node:18-slim AS base
 WORKDIR /usr/src/app
+
+ENV ROLLUP_SKIP_NATIVE=1
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    git \
+    openssl \
+  && rm -rf /var/lib/apt/lists/*
 
 # ---- Builder Stage ----
 # Esta etapa instala todas las dependencias (dev y prod), copia el código fuente,
 # genera Prisma Client y compila TypeScript.
 FROM base AS builder
 COPY package*.json ./
+# Copy Prisma schema before npm install, because postinstall runs `prisma generate`
+COPY prisma ./prisma
 RUN npm install
 COPY . .
-RUN npm run build
+# Build backend only (TypeScript -> dist). Frontend is built on host and copied as frontend-dist
+RUN npm run build:backend
 RUN npx prisma generate
 # Opcional: Limpiar devDependencies si se quiere optimizar un poco más antes de la siguiente etapa,
 # aunque la etapa 'production' reinstalará solo las de producción.
@@ -19,23 +30,32 @@ RUN npx prisma generate
 
 # ---- Production Stage ----
 # Usar una imagen más pequeña para producción final.
-FROM node:18-alpine AS production
+FROM node:18-slim AS production
 WORKDIR /usr/src/app
 
-# Copiar package.json y package-lock.json para instalar solo dependencias de producción.
+RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
+
+# Copiar package.json y schema de Prisma antes de instalar para que el postinstall encuentre el schema
 COPY package*.json ./
+COPY prisma ./prisma
 RUN npm install --omit=dev --no-optional
+# Provide ts-node/typescript for Prisma seed in production
+RUN npm install ts-node typescript --no-save
+
 # Si npm prune --production se usó en la etapa 'builder', se podrían copiar los node_modules desde allí:
 # COPY --from=builder /usr/src/app/node_modules ./node_modules
 
 # Copiar los artefactos de build (código Javascript compilado) desde la etapa 'builder'.
 COPY --from=builder /usr/src/app/dist ./dist
 
-# Copiar el schema de Prisma (necesario para que Prisma Client funcione en runtime).
-COPY --from=builder /usr/src/app/prisma ./prisma
+# (ya copiado arriba en esta etapa)
 
-# Copiar la carpeta 'public' que contiene los archivos estáticos del frontend.
-COPY --from=builder /usr/src/app/public ./public
+# Copiar el build del frontend (preconstruido en el host en frontend-dist) como carpeta pública
+COPY --from=builder /usr/src/app/frontend-dist ./public
+
+# Copy entrypoint to run migrations then start server
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 # Exponer el puerto en el que corre la aplicación (según src/config.ts o .env).
 # El valor por defecto es 3000.
@@ -44,7 +64,7 @@ EXPOSE 3000
 # Comando para ejecutar la aplicación.
 # NODE_ENV=production es importante para optimizaciones.
 # El .env en el host debe definir NODE_ENV=production para docker-compose.
-CMD ["node", "dist/server.js"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 # Consideraciones para migraciones en producción:
 # Un script entrypoint podría ejecutar 'npx prisma migrate deploy' antes del CMD.
