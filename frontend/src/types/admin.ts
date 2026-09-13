@@ -110,6 +110,7 @@ export interface CampusMyCourse {
   teacher_name?: string | null;
   year?: number | null;
   division?: string | null;
+  students_count: number;
 }
 
 export interface CampusGrade {
@@ -118,4 +119,5 @@ export interface CampusGrade {
   title: string;
   score: number;
   max_score: number;
+  graded_at: string;
 }

@@ -1,4 +1,9 @@
-export const calendarData = [
+export interface CalendarMonthData {
+  month: string;
+  events: { day: string; description: string; type: 'holiday' | 'event' | 'recess' }[];
+}
+
+export const calendarData: CalendarMonthData[] = [
   {
     month: "Febrero",
     events: [

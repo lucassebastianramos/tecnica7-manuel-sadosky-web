@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 type BlurTextProps = {
@@ -14,13 +14,6 @@ type BlurTextProps = {
   easing?: (t: number) => number; // Cambiado a función, no tipo Easing
   onAnimationComplete?: () => void;
   stepDuration?: number;
-};
-
-type Transition = {
-  duration?: number;
-  times?: number[];
-  delay?: number;
-  ease?: (t: number) => number | ((t: number) => number)[];
 };
 
 const buildKeyframes = (

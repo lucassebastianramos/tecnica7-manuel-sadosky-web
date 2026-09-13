@@ -117,7 +117,7 @@ const FeaturesSection = () => {
         {/* Bento Grid */}
         <motion.div
           className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6"
-          variants={container}
+          variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -125,7 +125,7 @@ const FeaturesSection = () => {
           {features.map((feature) => (
             <motion.article
               key={feature.title}
-              variants={item}
+              variants={staggerItem}
               transition={{ duration: 0.35, ease: 'easeOut' }}
               className={cn(
                 'card-elegant group relative flex flex-col overflow-hidden rounded-2xl border p-6',
