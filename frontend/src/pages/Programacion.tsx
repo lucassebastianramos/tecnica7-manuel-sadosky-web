@@ -13,7 +13,7 @@ import ProyectosParticipaciones from '@/components/ProyectosParticipaciones';
 import ImageGallery from '@/components/ImageGallery';
 import programacionImg from '@/assets/programacion.png';
 import codificacionImg from '@/assets/codificacion.png';
-import fotoalumnosImg from '@/assets/fotoalumnos.png';
+import fotoalumnosImg from '@/assets/fotoalumnos.webp';
 import horariosCicloSuperior from '@/assets/Horarios ciclo superior (2).xlsx';
 import { motion } from "framer-motion";
 

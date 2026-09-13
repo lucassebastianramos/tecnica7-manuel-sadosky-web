@@ -3,20 +3,13 @@ import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 
 import escuela from '@/assets/escuela.jpeg';
-import entrada from '@/assets/entrada.jpg';
+import entrada from '@/assets/entrada.webp';
 import patioColegio from '@/assets/patioColegio.jpg';
-import secretaria1 from '@/assets/secretaria.jpg';
-import cocina1 from '@/assets/cocina.jpg';
-import biblioteca1 from '@/assets/biblioteca.jpg';
-import direccion1 from '@/assets/direccion.jpg';
+import secretaria1 from '@/assets/secretaria.webp';
+import cocina1 from '@/assets/cocina.webp';
+import biblioteca1 from '@/assets/biblioteca.webp';
+import direccion1 from '@/assets/direccion.webp';
 import teatromalvinas from '@/assets/teatromalvinas.jpeg';
-import hero from '@/assets/hero-escuela-tecnica.jpg';
-
-import biblioteca from '@/assets/biblioteca.jpg';
-// import salaEspera from '@/assets/sala-espera.jpg';
-import direccion from '@/assets/direccion.jpg';
-// import secretaria from '@/assets/secretaria.jpg';
-import cocina from '@/assets/cocina.jpg';
 
 type AccentKey = 'blue' | 'violet' | 'emerald' | 'amber' | 'cyan' | 'rose';
 
@@ -98,6 +91,8 @@ const TourVirtual = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06] group-hover:brightness-[0.95]"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t ${accents[image.accent].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end`}> 

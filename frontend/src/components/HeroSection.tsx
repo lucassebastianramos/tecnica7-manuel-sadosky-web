@@ -1,11 +1,15 @@
-import { ArrowRight, Award, Users, BookOpen } from 'lucide-react';
+import { ArrowRight, Award, Users, BookOpen, Sparkles, CalendarDays, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-escuela-tecnica.jpg';
-import ShinyText from  './ShinyText/ShinyText';
-import GradientText from './GradientText/GradientText';
-import { motion } from "framer-motion";
-import BlurText from "./ui/BlurText";
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import BlurText from './ui/BlurText';
+import Squares from './ui/Squares';
+
+const stats = [
+  { icon: Users, value: '500+', label: 'Estudiantes' },
+  { icon: BookOpen, value: '2', label: 'Especialidades' },
+  { icon: Award, value: '110+', label: 'Años de Excelencia' },
+];
 
 const HeroSection = () => {
   const handleScroll = () => {
@@ -15,77 +19,92 @@ const HeroSection = () => {
     }
   };
 
-  const stats = [
-    { icon: Users, value: "500+", label: "Estudiantes" },
-    { icon: BookOpen, value: "2", label: "Especialidades" },
-    { icon: Award, value: "110+", label: "Años de Excelencia" }
-  ];
-
   return (
-    <section id="inicio" className="hero-section min-h-screen relative flex items-center pt-24">
-      {/* Fondo gradiente */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-blue-900 to-gray-900"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section
+      id="inicio"
+      aria-labelledby="hero-title"
+      className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 pt-24"
+    >
+      {/* Fondo interactivo de grilla */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Squares
+          direction="diagonal"
+          speed={0.5}
+          squareSize={48}
+          borderColor="rgba(148, 163, 184, 0.14)"
+          hoverFillColor="rgba(59, 130, 246, 0.22)"
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-slate-950/20"
+        aria-hidden="true"
+      />
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Content */}
-          <div className="text-white space-y-8">
+          <div className="space-y-8 text-white">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-medium text-cyan-300 backdrop-blur-md"
+            >
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo; — Banfield
+            </motion.div>
+
             <div className="space-y-4">
-              <motion.h1
-                className="font-heading font-bold text-5xl lg:text-7xl leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
+              <h1 id="hero-title" className="font-heading text-5xl font-bold leading-tight lg:text-7xl">
                 <BlurText
                   text="Formando Técnicos del Futuro"
-                  delay={160}
+                  delay={120}
                   animateBy="words"
                   direction="top"
-                  className="block text-6xl lg:text-7xl"
+                  className="block"
                 />
-                
-          {/* <GradientText
-                  className="block text-6xl lg:text-7xl"
-                  colors={["#ffffffff", "#130485ff", "#1e00ffff"]}
-                  animationSpeed={5}
+                <motion.span
+                  className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5, ease: 'easeOut' }}
                 >
-                  Formando Técnicos del Futuro
-                </GradientText> */}
-              </motion.h1>
+                  en Programación y Multimedios
+                </motion.span>
+              </h1>
               <motion.p
-                className="text-xl lg:text-2xl text-white/90 font-medium leading-relaxed"
+                className="max-w-xl text-xl font-medium leading-relaxed text-white/80 lg:text-2xl"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+                transition={{ duration: 0.3, delay: 0.6, ease: 'easeOut' }}
               >
-                Educación técnica de excelencia en Banfield. Más de 110 años preparando
+                Educación técnica pública de excelencia. Más de 110 años preparando
                 profesionales con las competencias que demanda el mundo laboral actual.
               </motion.p>
             </div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col gap-4 sm:flex-row"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3, delay: 0.75, ease: 'easeOut' }}
             >
-              <Button 
-                size="lg" 
-                className="bg-black text-primary hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              <Button
+                size="lg"
+                className="btn-glow bg-gradient-primary px-8 py-6 text-lg font-bold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:opacity-90 hover:shadow-2xl"
                 onClick={handleScroll}
               >
                 Conocé Nuestras Carreras
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Button>
-              <Link to="/tour-virtual">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-white text-gray hover:bg-transparent hover:text-primary font-bold text-lg px-8 py-6 rounded-xl backdrop-blur-sm bg-white/10"
-                >
-                  Tour Virtual
-                </Button>
-              </Link>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-white/25 bg-white/5 px-8 py-6 text-lg font-bold text-white backdrop-blur-md transition-colors hover:bg-white/15 hover:text-white"
+              >
+                <Link to="/tour-virtual">Tour Virtual</Link>
+              </Button>
             </motion.div>
 
             {/* Stats */}
@@ -95,28 +114,22 @@ const HeroSection = () => {
               animate="visible"
               variants={{
                 hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.2
-                  }
-                }
+                visible: { transition: { staggerChildren: 0.12 } },
               }}
             >
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <motion.div
-                  key={index}
-                  className="text-center space-y-2"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                  key={stat.label}
+                  className="space-y-2 text-center"
+                  variants={{
+                    hidden: { opacity: 0, y: 12 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
                 >
-                  <stat.icon className="h-8 w-8 mx-auto text-accent-light" />
-                  <div className="font-heading font-bold text-2xl lg:text-3xl">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm lg:text-base text-white/80">
-                    {stat.label}
-                  </div>
+                  <stat.icon className="mx-auto h-8 w-8 text-cyan-400" aria-hidden="true" />
+                  <div className="font-heading text-2xl font-bold lg:text-3xl">{stat.value}</div>
+                  <div className="text-sm text-white/70 lg:text-base">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -124,70 +137,78 @@ const HeroSection = () => {
 
           {/* Featured Card */}
           <motion.div
-            className="lg:flex justify-center hidden"
+            className="hidden justify-center lg:flex"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.35, ease: "easeOut" }}
+            transition={{ duration: 0.4, delay: 0.9, ease: 'easeOut' }}
           >
-            <div className="glass p-8 rounded-2xl max-w-md space-y-6">
-              <div className="text-center space-y-3">
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto">
-                  <Award className="h-8 w-8 text-primary" />
+            <div className="w-full max-w-md space-y-6 rounded-2xl border border-white/15 bg-white/10 p-8 shadow-2xl backdrop-blur-xl">
+              <div className="space-y-3 text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg">
+                  <GraduationCap className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
-                <h3 className="font-heading font-bold text-xl text-white">
-                  Inscripciones 2025
-                </h3>
-                <p className="text-white/90">
+                <h2 className="font-heading text-xl font-bold text-white">Inscripciones abiertas</h2>
+                <p className="text-white/80">
                   Iniciá tu futuro profesional en la escuela técnica líder de la zona sur.
                 </p>
               </div>
-              
-              <div className="space-y-3 text-white/90 text-sm">
-                <div className="flex justify-between">
-                  <span>Inscripciones:</span>
-                  <span className="font-semibold">Febrero - Marzo</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Inicio de clases:</span>
-                  <span className="font-semibold">Marzo 2025</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Modalidad:</span>
-                  <span className="font-semibold">Presencial</span>
-                </div>
-              </div>
 
-              <Link to="/inscripcion" className="w-full">
-                <Button
-                  className="w-full bg-accent hover:bg-accent-light text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Inscribite Ahora
-                </Button>
-              </Link>
+              <ul className="space-y-3 text-sm text-white/85">
+                <li className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+                    Inscripciones
+                  </span>
+                  <span className="font-semibold">Febrero - Marzo</span>
+                </li>
+                <li className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+                    Inicio de clases
+                  </span>
+                  <span className="font-semibold">Marzo</span>
+                </li>
+                <li className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2">
+                    <Users className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+                    Modalidad
+                  </span>
+                  <span className="font-semibold">Presencial</span>
+                </li>
+              </ul>
+
+              <Button
+                asChild
+                className="w-full rounded-xl bg-accent py-3 font-bold text-white shadow-lg transition-all duration-300 hover:bg-accent-light hover:shadow-xl"
+              >
+                <Link to="/inscripcion">Inscribite Ahora</Link>
+              </Button>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        className="absolute top-1/4 left-10 w-20 h-20 bg-white/10 rounded-full blur-sm animate-pulse hidden lg:block"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.6 }}
-      ></motion.div>
-      <motion.div
-        className="absolute bottom-1/3 right-20 w-12 h-12 bg-accent/20 rounded-full blur-sm animate-pulse hidden lg:block"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.7 }}
-      ></motion.div>
-      <motion.div
-        className="absolute top-1/2 right-1/4 w-6 h-6 bg-white/20 rounded-full blur-sm animate-pulse hidden lg:block"
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.8 }}
-      ></motion.div>
+      {/* Indicador de scroll */}
+      <motion.button
+        type="button"
+        onClick={handleScroll}
+        aria-label="Bajar a la sección de carreras"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/60 transition-colors hover:text-white md:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.5 }}
+      >
+        <motion.span
+          className="block h-10 w-6 rounded-full border-2 border-current p-1"
+          aria-hidden="true"
+        >
+          <motion.span
+            className="block h-2 w-2 rounded-full bg-current"
+            animate={{ y: [0, 14, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+          />
+        </motion.span>
+      </motion.button>
     </section>
   );
 };

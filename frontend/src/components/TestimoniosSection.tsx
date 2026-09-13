@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Linkedin } from 'lucide-react';
 import fotoLucas from '@/assets/fotoperfilgato.jpg';
-import fotoAbril from '@/assets/ftotoperfilAgua.jpg';
+import fotoAbril from '@/assets/ftotoperfilAgua.webp';
 import fotoAlejo from '@/assets/fotoperfilworms.jpg';
 import fotoJuan from '@/assets/fotoperfilzorro.jpg';
 import {motion} from 'framer-motion';
