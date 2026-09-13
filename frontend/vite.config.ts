@@ -9,41 +9,16 @@ export default defineConfig(({ mode }) => {
   assetsInclude: ['**/*.xlsx'],
   build: {
     outDir: '../frontend-dist',
-    chunkSizeWarningLimit: 700,
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 1100,
     rollupOptions: {
       output: {
+        // Un solo chunk vendor: dividir node_modules a mano genera ciclos entre
+        // chunks (vendor-react <-> vendor-charts) y errores TDZ en produccion
+        // ("Cannot access 'X' before initialization"). Un chunk unico no puede
+        // tener ciclos porque node_modules nunca importa codigo de src.
         manualChunks(id: string): string | undefined {
-          if (!id.includes('node_modules')) return undefined;
-
-          if (id.includes('framer-motion') || /node_modules[\\/]motion(-dom|-utils)?[\\/]/.test(id)) {
-            return 'vendor-motion';
-          }
-          if (id.includes('react-router') || id.includes('@remix-run')) {
-            return 'vendor-router';
-          }
-          if (/node_modules[\\/]react(-dom)?[\\/]/.test(id) || /node_modules[\\/]scheduler[\\/]/.test(id)) {
-            return 'vendor-react';
-          }
-          if (id.includes('@radix-ui')) {
-            return 'vendor-radix';
-          }
-          if (
-            id.includes('recharts') ||
-            id.includes('victory-vendor') ||
-            id.includes('react-smooth') ||
-            id.includes('d3-')
-          ) {
-            return 'vendor-charts';
-          }
-          if (id.includes('@tanstack')) {
-            return 'vendor-query';
-          }
-          if (id.includes('gsap')) {
-            return 'vendor-gsap';
-          }
-          if (id.includes('lucide-react') || id.includes('react-icons')) {
-            return 'vendor-icons';
-          }
+          if (id.includes('node_modules')) return 'vendor';
           return undefined;
         },
       },
