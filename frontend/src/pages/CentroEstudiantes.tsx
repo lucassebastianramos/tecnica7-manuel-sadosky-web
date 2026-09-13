@@ -1,6 +1,4 @@
 import { ArrowUpRight, Calendar, Users } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import UnidosPorLaLibertad from "@/assets/UnidosPorLaLibertad.jpeg";
 import CrearMasLibertad from "@/assets/Crear+Libertad.jpeg";
 import AvanceEstudiantil from "@/assets/AvanceEstudiantil.jpg";
@@ -64,8 +62,7 @@ const CentroEstudiantes = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white-50 dark:bg-gray-950">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 sm:px-6 lg:px-8 pt-32 pb-16">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -142,7 +139,6 @@ const CentroEstudiantes = () => {
           ))}
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 };

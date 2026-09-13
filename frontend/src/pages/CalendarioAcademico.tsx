@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { Calendar, ArrowDown, ArrowUp } from "lucide-react";
 import { calendarData } from "@/lib/calendarData";
 import CalendarMonth from "@/components/CalendarMonth";
@@ -44,8 +42,7 @@ const CalendarioAcademico = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16 pt-32">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-32">
         <motion.div
           className="text-center space-y-6"
           initial={{ opacity: 0, y: -20 }}
@@ -96,7 +93,6 @@ const CalendarioAcademico = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Footer />
     </div>
   );
 };

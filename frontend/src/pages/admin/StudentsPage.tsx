@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { apiFetch, type HttpMethod } from '@/lib/api';
 
 interface Student {
   student_id: number;
@@ -26,21 +27,12 @@ type StudentFormValues = {
   enrollmentDate: string;
 }
 
-const apiCall = async (url: string, method: string, token: string | null, body?: any) => {
-  const response = await fetch(url, {
-    method,
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'Ocurrió un error.');
-  }
-  return response.json();
-};
+const apiCall = <T = unknown>(
+  url: string,
+  method: HttpMethod,
+  token: string | null,
+  body?: unknown
+): Promise<T> => apiFetch<T>(url, { method, token, body });
 
 const AdminStudentsPage: React.FC = () => {
   const { token } = useAuth();

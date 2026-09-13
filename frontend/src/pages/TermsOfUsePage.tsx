@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { FileText } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -29,8 +27,7 @@ const TermsOfUsePage = () => {
         />
       </motion.div>
 
-      <Header />
-      <main className="flex-grow container mx-auto px-4 pt-32 pb-24">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <motion.div
           className="relative mx-auto w-fit"
           initial={{ scale: 0.8, rotate: -5 }}
@@ -218,7 +215,6 @@ const TermsOfUsePage = () => {
           transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
         />
       </main>
-      <Footer />
     </div>
   );
 };

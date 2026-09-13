@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { Briefcase, Building, Code, Film, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,8 +40,7 @@ const BolsaTrabajo = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16 pt-32">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-32">
         <motion.div
           className="text-center space-y-6"
           initial={{ opacity: 0, y: -20 }}
@@ -95,7 +92,6 @@ const BolsaTrabajo = () => {
           ))}
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -9,7 +9,6 @@ Paleta profesional y moderna para institución educativa técnica
 @layer base {
   :root {
     /* Backgrounds & Surfaces */
-    --border: 220 14% 96%; /* variable para border-border */
     --background: 220 50% 98%;
     --foreground: 220 40% 8%;
     --surface: 220 30% 96%;
@@ -28,15 +27,11 @@ Paleta profesional y moderna para institución educativa técnica
     --primary: 220 85% 45%;
     --primary-light: 220 85% 65%;
     --primary-dark: 220 85% 25%;
-    /* Clase personalizada para border-border */
-    .border-border {
-      border-color: hsl(var(--border));
-    }
     --primary-foreground: 0 0% 100%;
 
-    /* Technical Orange Accent */
-    --accent: 25 95% 55%;
-    --accent-light: 25 95% 75%;
+    /* Electric Cyan Accent - identidad tecnológica */
+    --accent: 190 90% 40%;
+    --accent-light: 187 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     /* Secondary Colors */
@@ -64,7 +59,7 @@ Paleta profesional y moderna para institución educativa técnica
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(220 85% 45%), hsl(220 85% 25%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 85% 45%), hsl(25 95% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 45%), hsl(190 90% 40%));
     --gradient-surface: linear-gradient(180deg, hsl(220 50% 98%), hsl(220 30% 96%));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 30% 98%));
 
@@ -117,8 +112,8 @@ Paleta profesional y moderna para institución educativa técnica
     --primary-dark: 220 85% 55%;
     --primary-foreground: 220 25% 8%;
 
-    --accent: 25 95% 65%;
-    --accent-light: 25 95% 75%;
+    --accent: 187 85% 55%;
+    --accent-light: 187 85% 70%;
     --accent-foreground: 220 25% 8%;
 
     --secondary: 220 25% 18%;
@@ -141,7 +136,7 @@ Paleta profesional y moderna para institución educativa técnica
     --ring: 220 85% 65%;
 
     --gradient-primary: linear-gradient(135deg, hsl(220 85% 65%), hsl(220 85% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 85% 55%), hsl(25 95% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 85% 55%), hsl(187 85% 55%));
     --gradient-surface: linear-gradient(180deg, hsl(220 25% 8%), hsl(220 25% 12%));
     --gradient-card: linear-gradient(145deg, hsl(220 25% 10%), hsl(220 25% 15%));
 
@@ -201,16 +196,18 @@ Paleta profesional y moderna para institución educativa técnica
     animation: float 20s ease-in-out infinite;
   }
 
-  /* Card Enhancements */
+  /* Card Enhancements - lenguaje visual unificado de superficies */
   .card-elegant {
-    background: var(--gradient-card);
-    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.4);
     box-shadow: var(--shadow-md);
     transition: var(--transition-smooth);
   }
 
   .card-elegant:hover {
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-glow);
     transform: translateY(-2px);
   }
 

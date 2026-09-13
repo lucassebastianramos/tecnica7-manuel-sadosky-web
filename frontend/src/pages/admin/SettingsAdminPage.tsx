@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import LoadingSkeleton from '@/components/common/LoadingSkeleton';
 import { useAuth } from '@/hooks/useAuth';
+import { apiFetch } from '@/lib/api';
+import type { Setting } from '@/types/admin';
 
 const SettingsAdminPage = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<Setting[]>([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [editing, setEditing] = useState<any | null>(null);
+  const [editing, setEditing] = useState<Setting | null>(null);
   const [keyField, setKeyField] = useState('');
   const [valueField, setValueField] = useState('');
-  const auth = useAuth();
+  const { token } = useAuth();
 
   const fetchItems = async () => {
     setLoading(true);
-    const res = await fetch('/api/settings');
-    const data = await res.json();
-    setItems(data);
-    setLoading(false);
+    try {
+      const data = await apiFetch<Setting[]>('/api/settings');
+      setItems(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { fetchItems(); }, []);
@@ -31,7 +36,7 @@ const SettingsAdminPage = () => {
     setOpen(true);
   };
 
-  const openEdit = (item: any) => {
+  const openEdit = (item: Setting) => {
     setEditing(item);
     setKeyField(item.key);
     setValueField(item.value);
@@ -40,24 +45,35 @@ const SettingsAdminPage = () => {
 
   const save = async () => {
     if (!keyField) return alert('Key requerido');
-    const method = editing ? 'PUT' : 'POST';
-    const url = editing ? `/api/settings/${encodeURIComponent(editing.key)}` : '/api/settings';
-    const headers: any = { 'Content-Type': 'application/json' };
-    if (auth?.token) headers['Authorization'] = `Bearer ${auth.token}`;
-
-    const res = await fetch(url, { method, headers, body: JSON.stringify({ key: keyField, value: valueField }) });
-    if (!res.ok) return alert('Error al guardar');
-    setOpen(false);
-    fetchItems();
+    try {
+      if (editing) {
+        await apiFetch(`/api/settings/${encodeURIComponent(editing.key)}`, {
+          method: 'PUT',
+          token,
+          body: { key: keyField, value: valueField },
+        });
+      } else {
+        await apiFetch('/api/settings', {
+          method: 'POST',
+          token,
+          body: { key: keyField, value: valueField },
+        });
+      }
+      setOpen(false);
+      fetchItems();
+    } catch {
+      alert('Error al guardar');
+    }
   };
 
-  const remove = async (item: any) => {
+  const remove = async (item: Setting) => {
     if (!confirm(`Eliminar ajuste ${item.key}?`)) return;
-    const headers: any = {};
-    if (auth?.token) headers['Authorization'] = `Bearer ${auth.token}`;
-    const res = await fetch(`/api/settings/${encodeURIComponent(item.key)}`, { method: 'DELETE', headers });
-    if (!res.ok) return alert('Error al eliminar');
-    fetchItems();
+    try {
+      await apiFetch(`/api/settings/${encodeURIComponent(item.key)}`, { method: 'DELETE', token });
+      fetchItems();
+    } catch {
+      alert('Error al eliminar');
+    }
   };
 
   return (
@@ -69,8 +85,11 @@ const SettingsAdminPage = () => {
         </div>
       </div>
       <div className="grid gap-4">
-        {loading && <div>Cargando...</div>}
-        {items.map(i => (
+        {loading && <LoadingSkeleton variant="cards" rows={3} />}
+        {!loading && items.length === 0 && (
+          <p className="py-8 text-center text-muted-foreground">No hay ajustes configurados.</p>
+        )}
+        {items.map((i) => (
           <Card key={i.key}>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
@@ -95,12 +114,23 @@ const SettingsAdminPage = () => {
           </DialogHeader>
           <div className="space-y-4 mt-4">
             <div>
-              <label className="block text-sm font-medium">Key</label>
-              <Input value={keyField} onChange={(e: any) => setKeyField(e.target.value)} disabled={!!editing} />
+              <label htmlFor="setting-key" className="block text-sm font-medium">Key</label>
+              <Input
+                id="setting-key"
+                value={keyField}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setKeyField(e.target.value)}
+                disabled={!!editing}
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Value</label>
-              <textarea className="w-full border rounded p-2" rows={8} value={valueField} onChange={(e) => setValueField(e.target.value)} />
+              <label htmlFor="setting-value" className="block text-sm font-medium">Value</label>
+              <textarea
+                id="setting-value"
+                className="w-full rounded border p-2"
+                rows={8}
+                value={valueField}
+                onChange={(e) => setValueField(e.target.value)}
+              />
             </div>
             <div className="flex justify-end gap-2">
               <Button variant="ghost" onClick={() => setOpen(false)}>Cancelar</Button>

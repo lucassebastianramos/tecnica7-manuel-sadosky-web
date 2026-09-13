@@ -1,12 +1,9 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 
 const Noticias = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,7 +20,6 @@ const Noticias = () => {
             <p className="text-gray-500 mt-2">Vuelve pronto para más novedades.</p>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

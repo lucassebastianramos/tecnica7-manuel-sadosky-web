@@ -4,16 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { BookOpen, AlertCircle, CheckCircle } from 'lucide-react';
+import { apiFetch } from '@/lib/api';
+import type { CampusGrade } from '@/types/admin';
 
 const MyGrades: React.FC = () => {
   const { token } = useAuth();
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<CampusGrade[]>({
     queryKey: ['my-grades'],
-    queryFn: async () => {
-      const res = await fetch('/api/campus/my/grades', { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar tus calificaciones');
-      return res.json();
-    },
+    queryFn: () => apiFetch<CampusGrade[]>('/api/campus/my/grades', { token }),
     enabled: !!token,
   });
 
@@ -25,7 +23,7 @@ const MyGrades: React.FC = () => {
       <h1 className="text-3xl font-bold text-gray-800">Mis Calificaciones</h1>
       {data?.length ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {data.map((g: any) => (
+          {data.map((g: CampusGrade) => (
             <Card key={g.id} className="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-xl font-bold text-gray-800">{g.course_name}</CardTitle>

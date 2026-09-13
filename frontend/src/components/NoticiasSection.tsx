@@ -1,60 +1,110 @@
-import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Instagram, Newspaper } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 import escudotec from '../assets/escudotec.png';
 
 const NoticiasSection = () => {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
   return (
-    <section id="noticias" className="py-20 bg-gradient-to-b from-white-400 via-gray-300 to-gray-500">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 font-heading text-black drop-shadow-md">
-          Últimas Noticias
-        </h2>
-        <div className="flex justify-center">
-          <div className="w-full max-w-4xl bg-gray-400/10 backdrop-blur-lg border border-gray-200/20 rounded-3xl shadow-2xl overflow-hidden">
-            <div className="p-2 sm:p-4">
-              <iframe
-                src="https://rss.app/embed/v1/magazine/aNGzeHNdBWZrQWlM"
-                width="100%"
-                height="800"
-                frameBorder="0"
-                className="w-full rounded-2xl"
-                allow="clipboard-write"
-                title="Instagram Feed"
-                style={{
-                  border: 'none',
-                  background: 'transparent',
-                  display: 'block',
-                  minHeight: 400,
-                  maxHeight: 900,
-                }}
-                scrolling="yes"
-              ></iframe>
-            </div>
+    <section id="noticias" className="bg-surface py-20" aria-labelledby="noticias-title">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="mb-12 space-y-4 text-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h2 id="noticias-title" className="font-heading text-4xl font-bold text-foreground lg:text-5xl">
+            Últimas <span className="text-primary">Noticias</span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
+            Novedades, eventos y la vida diaria de la comunidad de la Técnica 7.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
+            {!iframeLoaded && (
+              <div className="absolute inset-0 space-y-6 p-6 sm:p-8" aria-hidden="true">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="h-10 w-10 rounded-full" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-40" />
+                    <Skeleton className="h-3 w-24" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <Skeleton className="h-44 rounded-xl" />
+                  <Skeleton className="h-44 rounded-xl" />
+                  <Skeleton className="h-44 rounded-xl" />
+                </div>
+                <Skeleton className="h-56 rounded-xl" />
+              </div>
+            )}
+            <iframe
+              src="https://rss.app/embed/v1/magazine/aNGzeHNdBWZrQWlM"
+              width="100%"
+              height="800"
+              loading="lazy"
+              onLoad={() => setIframeLoaded(true)}
+              className={cn(
+                'block h-[600px] w-full border-0 transition-opacity duration-500 lg:h-[800px]',
+                iframeLoaded ? 'opacity-100' : 'opacity-0'
+              )}
+              allow="clipboard-write"
+              title="Feed de noticias de Instagram de la E.E.S.T. N°7"
+            />
           </div>
-        </div>
-        <div className="flex justify-center mt-12">
+        </motion.div>
+
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
           <a
             href="https://www.instagram.com/tecnica7banfield/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full max-w-md bg-gray-900/50 backdrop-blur-sm border border-gray-700/20 rounded-2xl p-6 flex items-center space-x-6 transition-all duration-300 hover:bg-gray-700/70 hover:shadow-xl"
+            aria-label="Ver el perfil de Instagram de la E.E.S.T. N°7 (se abre en una pestaña nueva)"
+            className="group flex w-full max-w-md items-center gap-5 rounded-2xl border border-border bg-card p-5 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
             <img
               src={escudotec}
-              alt="Perfil de Instagram"
-              className="h-30 w-20 rounded-full border-2 border-pink-500 object-cover"
+              alt=""
+              className="h-16 w-16 rounded-full border-2 border-pink-500 object-cover"
             />
             <div className="flex-grow">
-              <p className="font-bold text-white text-lg">tecnica7banfield</p>
-              <p className="text-gray-300 text-sm">E.E.S.T N°7 "Técnicos en Libertad"</p>
+              <p className="flex items-center gap-2 text-lg font-bold text-foreground">
+                tecnica7banfield
+                <Instagram className="h-4 w-4 text-pink-500" aria-hidden="true" />
+              </p>
+              <p className="text-sm text-muted-foreground">
+                E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo;
+              </p>
             </div>
-            <div className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-7 py-1 rounded-lg transition-colors">
+            <span className="rounded-lg bg-blue-500 px-5 py-2 text-sm font-semibold text-white transition-colors group-hover:bg-blue-600">
               Ver Perfil
-            </div>
+            </span>
           </a>
-        </div>
+        </motion.div>
+
+        <p className="mt-8 flex items-center justify-center gap-2 text-center text-sm text-muted-foreground">
+          <Newspaper className="h-4 w-4" aria-hidden="true" />
+          El feed se actualiza automáticamente desde nuestro Instagram oficial.
+        </p>
       </div>
     </section>
   );

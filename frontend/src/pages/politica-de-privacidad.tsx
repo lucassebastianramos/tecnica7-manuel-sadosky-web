@@ -1,11 +1,8 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import {SearchSlashIcon}  from "lucide-react"; 
 const PoliticaDePrivacidad = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 pt-32 pb-24">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24">
         <h1 className="text-5xl font-bold text-center mb-16 font-heading mt-16">
           <span className="border-b-4 border-primary pb-2">Política de Privacidad</span>
         </h1>
@@ -73,7 +70,6 @@ const PoliticaDePrivacidad = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

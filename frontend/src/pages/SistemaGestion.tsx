@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, BookKey, Users, FileText, GraduationCap, Activity } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -65,8 +63,7 @@ const SistemaGestion = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16 pt-32">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-32">
         <div className="text-center mb-12">
           <h1 className="font-heading font-bold text-4xl lg:text-5xl text-foreground">
             Sistema de <span className="text-primary">Gestión</span>
@@ -142,7 +139,6 @@ const SistemaGestion = () => {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 };

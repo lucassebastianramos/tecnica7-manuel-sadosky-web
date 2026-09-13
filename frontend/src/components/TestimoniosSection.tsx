@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Linkedin } from 'lucide-react';
 import fotoLucas from '@/assets/fotoperfilgato.jpg';
-import fotoAbril from '@/assets/ftotoperfilAgua.jpg';
+import fotoAbril from '@/assets/ftotoperfilAgua.webp';
 import fotoAlejo from '@/assets/fotoperfilworms.jpg';
 import fotoJuan from '@/assets/fotoperfilzorro.jpg';
 import {motion} from 'framer-motion';
@@ -43,7 +43,7 @@ const TestimoniosSection = () => {
 
   return (
     <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-heading font-bold text-3xl text-foreground mb-4">
             Testimonios de <span className="text-primary">Nuestros Egresados</span>
