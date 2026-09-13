@@ -34,8 +34,8 @@ services:
       - POSTGRES_USER=${DB_USER:-postgres} # Usuario de la BD, default 'postgres'
       - POSTGRES_PASSWORD=${DB_PASSWORD:-mysecretpassword} # Contraseña, cambiar en producción
       - POSTGRES_DB=${DB_NAME:-tecnica7db} # Nombre de la BD, default 'tecnica7db'
-    ports:
-      - "${DB_PORT:-5432}:5432" # Mapea el puerto de PostgreSQL del host al contenedor
+    # Sin mapeo de puertos: la DB solo es accesible desde la red interna de Docker.
+    # Exponer 5432 en la IP pública es un riesgo de seguridad.
     volumes:
       - postgres_data:/var/lib/postgresql/data # Persiste los datos de la BD
     
