@@ -1,5 +1,9 @@
 # Evitar copiar node_modules del host a la imagen, se instalarán dentro
 node_modules
+**/node_modules
+# Carpetas auxiliares del frontend que no participan del build
+frontend/jules-scratch
+jules-scratch
 npm-debug.log
 yarn-error.log
 yarn-debug.log

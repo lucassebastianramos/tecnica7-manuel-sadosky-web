@@ -12,6 +12,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openssl \
   && rm -rf /var/lib/apt/lists/*
 
+# ---- Frontend Builder Stage ----
+# Compila el frontend (Vite) dentro de la imagen. Así el build de producción
+# no depende de la carpeta frontend-dist (que no se commitea al repo).
+FROM node:18-slim AS frontend-builder
+WORKDIR /usr/src/app/frontend
+
+ENV ROLLUP_SKIP_NATIVE=1
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ ./
+# vite.config.ts escribe el build en ../frontend-dist => /usr/src/app/frontend-dist
+RUN npm run build
+
 # ---- Builder Stage ----
 # Esta etapa instala todas las dependencias (dev y prod), copia el código fuente,
 # genera Prisma Client y compila TypeScript.
@@ -21,7 +34,7 @@ COPY package*.json ./
 COPY prisma ./prisma
 RUN npm install
 COPY . .
-# Build backend only (TypeScript -> dist). Frontend is built on host and copied as frontend-dist
+# Build backend only (TypeScript -> dist). El frontend se compila en la etapa frontend-builder
 RUN npm run build:backend
 RUN npx prisma generate
 # Opcional: Limpiar devDependencies si se quiere optimizar un poco más antes de la siguiente etapa,
@@ -50,8 +63,8 @@ COPY --from=builder /usr/src/app/dist ./dist
 
 # (ya copiado arriba en esta etapa)
 
-# Copiar el build del frontend (preconstruido en el host en frontend-dist) como carpeta pública
-COPY --from=builder /usr/src/app/frontend-dist ./public
+# Copiar el build del frontend (compilado en la etapa frontend-builder) como carpeta pública
+COPY --from=frontend-builder /usr/src/app/frontend-dist ./public
 
 # Copy entrypoint to run migrations then start server
 COPY entrypoint.sh ./entrypoint.sh
