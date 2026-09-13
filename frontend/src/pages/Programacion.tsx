@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import DisenoCurricular from '@/components/DisenoCurricular';
 import PerfilEgreso from '@/components/PerfilEgreso';
 import SalidaLaboral from '@/components/SalidaLaboral';
@@ -94,10 +92,9 @@ const Programacion = () => {
         />
       </motion.div>
 
-      <Header />
       <main className="flex-grow">
         <div className="min-h-screen pt-32 pb-20">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {/* Hero Section */}
             <motion.div
               className="text-center space-y-6 mb-16"
@@ -449,7 +446,6 @@ const Programacion = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

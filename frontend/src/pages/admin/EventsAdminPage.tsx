@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import { apiFetch } from '@/lib/api';
+import type { SchoolEvent } from '@/types/admin';
 
 const EventsAdminPage = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<SchoolEvent[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchItems = async () => {
     setLoading(true);
-    const res = await fetch('/api/events');
-    const data = await res.json();
-    setItems(data);
-    setLoading(false);
+    try {
+      const data = await apiFetch<SchoolEvent[]>('/api/events');
+      setItems(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { fetchItems(); }, []);
@@ -23,8 +28,11 @@ const EventsAdminPage = () => {
         <Button onClick={() => alert('Crear no implementado aún')}>Crear</Button>
       </div>
       <div className="grid gap-4">
-        {loading && <div>Cargando...</div>}
-        {items.map(i => (
+        {loading && <LoadingSkeleton variant="cards" rows={3} />}
+        {!loading && items.length === 0 && (
+          <p className="py-8 text-center text-muted-foreground">No hay eventos cargados.</p>
+        )}
+        {items.map((i) => (
           <Card key={i.id}>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">

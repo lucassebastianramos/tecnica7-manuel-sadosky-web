@@ -4,8 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import PageHeader from '@/components/PageHeader';
 import {
   Accordion,
   AccordionContent,
@@ -105,28 +104,23 @@ const ContactoPage = () => {
       }
       setStatus({ loading: false, error: '', success: data.message });
       setFormData({ nombre: '', Email: '', telefono: '', asunto: '', comentario: '' });
-    } catch (error: any) {
-      setStatus({ loading: false, error: error.message, success: '' });
+    } catch (error) {
+      setStatus({ loading: false, error: error instanceof Error ? error.message : 'Error al enviar el formulario.', success: '' });
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow pt-32 pb-20">
-        <section id="contacto" className="bg-background">
-          <div className="container mx-auto px-4">
-            {/* Header */}
-            <div className="text-center space-y-4 mb-16">
-              <h2 className="font-heading font-bold text-4xl lg:text-5xl text-foreground">
-                <span className="text-primary">Contactanos</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                ¿Tenés dudas sobre nuestras carreras o el proceso de inscripción?
-                Estamos aquí para ayudarte a dar el primer paso hacia tu futuro técnico.
-              </p>
-            </div>
-
+      <main className="flex-grow pb-20">
+        <PageHeader
+          badge="Contacto"
+          title="Contactá a la"
+          highlight="Técnica 7"
+          description="¿Tenés dudas sobre nuestras carreras o el proceso de inscripción? Estamos aquí para ayudarte a dar el primer paso hacia tu futuro técnico."
+          breadcrumb={[{ label: 'Contacto' }]}
+        />
+        <section id="contacto" className="bg-background pt-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Contact Information */}
               <div className="space-y-8">
@@ -333,7 +327,6 @@ const ContactoPage = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

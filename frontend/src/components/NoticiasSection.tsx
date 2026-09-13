@@ -10,7 +10,7 @@ const NoticiasSection = () => {
 
   return (
     <section id="noticias" className="bg-surface py-20" aria-labelledby="noticias-title">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="mb-12 space-y-4 text-center"
           initial={{ opacity: 0, y: 16 }}

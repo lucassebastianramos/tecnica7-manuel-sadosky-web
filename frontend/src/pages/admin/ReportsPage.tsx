@@ -4,25 +4,27 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-
-const api = async (url: string, token: string | null) => {
-  const res = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
-  if (!res.ok) throw new Error('Error al cargar los reportes');
-  return res.json();
-};
+import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import { apiFetch } from '@/lib/api';
+import type { ReportData } from '@/types/admin';
 
 const ReportsPage: React.FC = () => {
   const { token } = useAuth();
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<ReportData>({
     queryKey: ['reports'],
-    queryFn: () => api('/api/courses/reports', token),
+    queryFn: () => apiFetch<ReportData>('/api/courses/reports', { token }),
     enabled: !!token,
   });
 
-  if (isLoading) return <div>Cargando reportes...</div>;
-  if (error) return <div>Error: {(error as Error).message}</div>;
+  if (isLoading) return <LoadingSkeleton variant="cards" rows={2} />;
+  if (error) return <div role="alert">Error: {(error as Error).message}</div>;
 
-  const { coursesCount, enrollmentsCount, topCourses, monthlyEnrollments } = data as any;
+  const { coursesCount, enrollmentsCount, topCourses, monthlyEnrollments } = data ?? {
+    coursesCount: 0,
+    enrollmentsCount: 0,
+    topCourses: [],
+    monthlyEnrollments: [],
+  };
 
   return (
     <div className="space-y-6">

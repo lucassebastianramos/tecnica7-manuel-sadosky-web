@@ -92,7 +92,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-gray-100 to-white backdrop-blur-sm border-b border-border">
       {/* Top contact bar */}
       <div className="bg-primary text-primary-foreground py-1 text-xs">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Phone className="h-3 w-3" aria-hidden="true" />
@@ -115,7 +115,7 @@ const Header = () => {
       </div>
 
       {/* Main navigation */}
-      <nav className="container mx-auto px-4 py-4" aria-label="Navegación principal">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Navegación principal">
         <div className="flex items-center justify-between">
           {/* Logo and title */}
           <Link to="/" className="flex items-center space-x-3">

@@ -5,16 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Book, Users, Briefcase } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { apiFetch } from '@/lib/api';
+import type { CampusMyCourse, SubjectEntry } from '@/types/admin';
 
 const MyCourses: React.FC = () => {
   const { token, user } = useAuth();
-  const { data: courses, isLoading, error } = useQuery({
+  const { data: courses, isLoading, error } = useQuery<CampusMyCourse[]>({
     queryKey: ['my-courses'],
-    queryFn: async () => {
-      const res = await fetch('/api/campus/my/courses', { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar tus cursos');
-      return res.json();
-    },
+    queryFn: () => apiFetch<CampusMyCourse[]>('/api/campus/my/courses', { token }),
     enabled: !!token,
   });
 
@@ -30,7 +28,7 @@ const MyCourses: React.FC = () => {
   return (
     <div className="space-y-4">
       <AnimatePresence>
-        {courses?.length ? courses.map((course: any) => (
+        {courses?.length ? courses.map((course: CampusMyCourse) => (
           <motion.div
             key={course.course_id}
             layout
@@ -95,13 +93,9 @@ const MyCourses: React.FC = () => {
 };
 
 const CourseSubjects: React.FC<{ courseId: number; token: string | null }> = ({ courseId, token }) => {
-  const { data: subjects, isLoading, error } = useQuery({
+  const { data: subjects, isLoading, error } = useQuery<SubjectEntry[]>({
     queryKey: ['course-subjects', courseId],
-    queryFn: async () => {
-      const res = await fetch(`/api/campus/courses/${courseId}/subjects`, { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar las materias');
-      return res.json();
-    },
+    queryFn: () => apiFetch<SubjectEntry[]>(`/api/campus/courses/${courseId}/subjects`, { token }),
     enabled: !!token,
   });
 
@@ -113,7 +107,7 @@ const CourseSubjects: React.FC<{ courseId: number; token: string | null }> = ({ 
       <h4 className="text-md font-semibold mb-3">Materias del curso</h4>
       {subjects?.length ? (
         <ul className="space-y-2">
-          {subjects.map((subject: any) => (
+          {subjects.map((subject: SubjectEntry) => (
             <motion.li
               key={subject.id}
               initial={{ opacity: 0, x: -10 }}

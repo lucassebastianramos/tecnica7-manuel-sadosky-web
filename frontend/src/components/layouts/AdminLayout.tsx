@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { Home, Users, GraduationCap, Book, BarChart, LogOut, Settings, Newspaper, Radio } from 'lucide-react';
+import { Home, Users, GraduationCap, Book, BarChart, LogOut, Settings, Newspaper, Radio, CalendarDays, UsersRound } from 'lucide-react';
 
 const AdminLayout: React.FC = () => {
   const { logout } = useAuth();
@@ -15,6 +15,8 @@ const AdminLayout: React.FC = () => {
     { to: "/admin/courses", icon: <Book className="w-5 h-5" />, label: "Cursos" },
     { to: "/admin/news", icon: <Newspaper className="w-5 h-5" />, label: "Noticias" },
     { to: "/admin/radio", icon: <Radio className="w-5 h-5" />, label: "Radio" },
+    { to: "/admin/events", icon: <CalendarDays className="w-5 h-5" />, label: "Eventos" },
+    { to: "/admin/student-centers", icon: <UsersRound className="w-5 h-5" />, label: "Centro Estudiantes" },
     { to: "/admin/reports", icon: <BarChart className="w-5 h-5" />, label: "Reportes" },
     { to: "/admin/settings", icon: <Settings className="w-5 h-5" />, label: "Ajustes" },
   ];

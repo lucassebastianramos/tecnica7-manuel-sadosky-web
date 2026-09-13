@@ -1,5 +1,3 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 
 import escuela from '@/assets/escuela.jpeg';
@@ -36,8 +34,7 @@ const accents: Record<AccentKey, { gradient: string; ring: string; borderHover: 
 const TourVirtual = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-  <main className="relative flex-grow container mx-auto px-4 pt-32 pb-20">
+  <main className="relative flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         {/* Fondos suaves animados */}
         <motion.div
           className="absolute inset-0 -z-10 w-full h-full pointer-events-none"
@@ -113,7 +110,6 @@ const TourVirtual = () => {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

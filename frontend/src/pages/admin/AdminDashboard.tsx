@@ -4,6 +4,18 @@ import { Link } from "react-router-dom";
 import { useAuth } from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from "framer-motion";
+import { apiFetch } from '@/lib/api';
+import type { ContactMessage } from '@/types/admin';
+
+interface AdminMetrics {
+  counts?: {
+    students?: number;
+    teachers?: number;
+    users?: number;
+    contacts?: number;
+  };
+  recentContacts?: ContactMessage[];
+}
 
 const AdminDashboard = () => {
   const adminFeatures = [
@@ -38,13 +50,9 @@ const AdminDashboard = () => {
   ];
 
   const { token } = useAuth();
-  const { data } = useQuery({
+  const { data } = useQuery<AdminMetrics>({
     queryKey: ['admin-metrics'],
-    queryFn: async () => {
-      const res = await fetch('/api/admin/metrics', { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar las métricas');
-      return res.json();
-    },
+    queryFn: () => apiFetch<AdminMetrics>('/api/admin/metrics', { token }),
     enabled: !!token,
   });
 
@@ -186,7 +194,7 @@ const AdminDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {data?.recentContacts?.length ? data.recentContacts.map((c: any) => (
+              {data?.recentContacts?.length ? data.recentContacts.map((c: ContactMessage) => (
                 <div key={c.id} className="flex items-center justify-between p-3 rounded-md hover:bg-gray-50 transition-colors">
                   <div className="flex items-center">
                     <div className="p-2 bg-primary/10 rounded-full mr-4">

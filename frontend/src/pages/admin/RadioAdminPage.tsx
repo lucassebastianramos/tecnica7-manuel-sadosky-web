@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import { apiFetch } from '@/lib/api';
+import type { RadioProgram } from '@/types/admin';
 
 const RadioAdminPage = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<RadioProgram[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchItems = async () => {
     setLoading(true);
-    const res = await fetch('/api/radio');
-    const data = await res.json();
-    setItems(data);
-    setLoading(false);
+    try {
+      const data = await apiFetch<RadioProgram[]>('/api/radio');
+      setItems(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { fetchItems(); }, []);
@@ -23,8 +28,11 @@ const RadioAdminPage = () => {
         <Button onClick={() => alert('Crear no implementado aún')}>Crear</Button>
       </div>
       <div className="grid gap-4">
-        {loading && <div>Cargando...</div>}
-        {items.map(i => (
+        {loading && <LoadingSkeleton variant="cards" rows={3} />}
+        {!loading && items.length === 0 && (
+          <p className="py-8 text-center text-muted-foreground">No hay programas de radio cargados.</p>
+        )}
+        {items.map((i) => (
           <Card key={i.id}>
             <CardHeader>
               <CardTitle className="flex justify-between items-center">

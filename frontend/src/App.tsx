@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PublicLayout from "./components/layouts/PublicLayout";
 import Index from "./pages/Index";
 import logo from "@/assets/logo.png";
 
@@ -27,6 +28,9 @@ const CoursesPage = lazy(() => import("./pages/admin/CoursesPage"));
 const ReportsPage = lazy(() => import("./pages/admin/ReportsPage"));
 const NewsPage = lazy(() => import("./pages/admin/NewsPage"));
 const SettingsAdminPage = lazy(() => import("./pages/admin/SettingsAdminPage"));
+const RadioAdminPage = lazy(() => import("./pages/admin/RadioAdminPage"));
+const EventsAdminPage = lazy(() => import("./pages/admin/EventsAdminPage"));
+const StudentCentersPage = lazy(() => import("./pages/admin/StudentCentersPage"));
 const BibliotecaDigital = lazy(() => import("./pages/BibliotecaDigital"));
 const BolsaTrabajo = lazy(() => import("./pages/BolsaTrabajo"));
 const CalendarioAcademico = lazy(() => import("./pages/CalendarioAcademico"));
@@ -69,26 +73,31 @@ const App = () => (
           <ScrollToTop />
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/ciclo-basico" element={<CicloBasico />} />
-              <Route path="/programacion" element={<Programacion />} />
-              <Route path="/multimedios" element={<Multimedios />} />
-              <Route path="/historia" element={<Historia />} />
-              <Route path="/radio" element={<Radio />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/campus-virtual" element={<CampusVirtual />} />
-              <Route path="/biblioteca-digital" element={<BibliotecaDigital />} />
-              <Route path="/bolsa-trabajo" element={<BolsaTrabajo />} />
-              <Route path="/calendario-academico" element={<CalendarioAcademico />} />
-              <Route path="/reglamento-interno" element={<ReglamentoInterno />} />
-              <Route path="/sistema-gestion" element={<SistemaGestion />} />
-              <Route path="/centro-estudiantes" element={<CentroEstudiantes />} />
-              <Route path="/politica-de-privacidad" element={<PoliticaDePrivacidad />} />
-              <Route path="/terminos-de-uso" element={<TermsOfUsePage />} />
-              <Route path="/contacto" element={<ContactoPage />} />
-              <Route path="/inscripcion" element={<InscripcionPage />} />
-              <Route path="/tour-virtual" element={<TourVirtual />} />
-              <Route path="/noticias" element={<Noticias />} />
+              {/* Rutas públicas con chrome compartido (Header/Footer) */}
+              <Route element={<PublicLayout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/ciclo-basico" element={<CicloBasico />} />
+                <Route path="/programacion" element={<Programacion />} />
+                <Route path="/multimedios" element={<Multimedios />} />
+                <Route path="/historia" element={<Historia />} />
+                <Route path="/radio" element={<Radio />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/campus-virtual" element={<CampusVirtual />} />
+                <Route path="/biblioteca-digital" element={<BibliotecaDigital />} />
+                <Route path="/bolsa-trabajo" element={<BolsaTrabajo />} />
+                <Route path="/calendario-academico" element={<CalendarioAcademico />} />
+                <Route path="/reglamento-interno" element={<ReglamentoInterno />} />
+                <Route path="/sistema-gestion" element={<SistemaGestion />} />
+                <Route path="/centro-estudiantes" element={<CentroEstudiantes />} />
+                <Route path="/politica-de-privacidad" element={<PoliticaDePrivacidad />} />
+                <Route path="/terminos-de-uso" element={<TermsOfUsePage />} />
+                <Route path="/contacto" element={<ContactoPage />} />
+                <Route path="/inscripcion" element={<InscripcionPage />} />
+                <Route path="/tour-virtual" element={<TourVirtual />} />
+                <Route path="/noticias" element={<Noticias />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Route>
 
               {/* Rutas Protegidas */}
               <Route element={<ProtectedRoute />}>
@@ -108,12 +117,12 @@ const App = () => (
                   <Route path="courses" element={<CoursesPage />} />
                   <Route path="reports" element={<ReportsPage />} />
                   <Route path="news" element={<NewsPage />} />
+                  <Route path="radio" element={<RadioAdminPage />} />
+                  <Route path="events" element={<EventsAdminPage />} />
+                  <Route path="student-centers" element={<StudentCentersPage />} />
                   <Route path="settings" element={<SettingsAdminPage />} />
                 </Route>
               </Route>
-
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

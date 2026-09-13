@@ -6,29 +6,23 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ExternalLink, Trash2 } from 'lucide-react';
+import { apiFetch } from '@/lib/api';
+import type { CampusMyCourse, CourseMaterial } from '@/types/admin';
 
 const Materials: React.FC = () => {
   const { token, user } = useAuth();
   const qc = useQueryClient();
   const [courseId, setCourseId] = useState<number | ''>('');
 
-  const { data: myCourses } = useQuery({
+  const { data: myCourses } = useQuery<CampusMyCourse[]>({
     queryKey: ['my-courses'],
-    queryFn: async () => {
-      const res = await fetch('/api/campus/my/courses', { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar cursos');
-      return res.json();
-    },
+    queryFn: () => apiFetch<CampusMyCourse[]>('/api/campus/my/courses', { token }),
     enabled: !!token,
   });
 
-  const { data: materials } = useQuery({
+  const { data: materials } = useQuery<CourseMaterial[]>({
     queryKey: ['materials', courseId],
-    queryFn: async () => {
-      const res = await fetch(`/api/campus/courses/${courseId}/materials`, { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudieron cargar materiales');
-      return res.json();
-    },
+    queryFn: () => apiFetch<CourseMaterial[]>(`/api/campus/courses/${courseId}/materials`, { token }),
     enabled: !!token && !!courseId,
   });
 
@@ -60,7 +54,7 @@ const Materials: React.FC = () => {
     <div className="space-y-4">
       <div className="flex gap-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {myCourses?.map((c: any) => (
+          {myCourses?.map((c: CampusMyCourse) => (
             <Card
               key={c.course_id}
               className={`cursor-pointer border-2 ${courseId === c.course_id ? 'border-primary' : 'border-transparent'} hover:shadow-lg transition-shadow duration-300`}
@@ -81,7 +75,7 @@ const Materials: React.FC = () => {
         <div className="space-y-3">
           <h3 className="font-semibold">Materiales</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {materials?.length ? materials.map((m: any) => (
+            {materials?.length ? materials.map((m: CourseMaterial) => (
               <Card key={m.id} className="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
                 <CardHeader>
                   <CardTitle className="text-xl font-bold">{m.title}</CardTitle>

@@ -14,6 +14,7 @@ import type { LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { staggerContainer, staggerItem } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
 interface Feature {
@@ -92,20 +93,10 @@ const achievements = [
   { number: '100+', label: 'Docentes y Técnicos' },
 ];
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const FeaturesSection = () => {
   return (
     <section id="institucional" className="bg-background py-20" aria-labelledby="features-title">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           className="mb-16 space-y-4 text-center"

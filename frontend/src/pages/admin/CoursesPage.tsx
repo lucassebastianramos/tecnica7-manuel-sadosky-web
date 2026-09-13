@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle, Edit, Trash2, UserPlus, BookOpen, ChevronUp, ChevronDown } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { apiFetch, type HttpMethod } from '@/lib/api';
+import type { CourseDetail, Enrollment } from '@/types/admin';
 
 interface CourseRow {
   course_id: number;
@@ -21,21 +23,12 @@ interface CourseRow {
   students_count: number;
 }
 
-const api = async (url: string, method: string, token: string | null, body?: any) => {
-  const res = await fetch(url, {
-    method,
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || 'Ocurrió un error.');
-  }
-  return res.json();
-};
+const api = <T = unknown>(
+  url: string,
+  method: HttpMethod,
+  token: string | null,
+  body?: unknown
+): Promise<T> => apiFetch<T>(url, { method, token, body });
 
 const CoursesPage: React.FC = () => {
   const { token, user } = useAuth();
@@ -60,9 +53,9 @@ const CoursesPage: React.FC = () => {
     return data.filter(c => `${c.name} ${c.teacher_name ?? ''}`.toLowerCase().includes(q));
   }, [data, search]);
 
-  const { data: courseDetail } = useQuery({
+  const { data: courseDetail } = useQuery<CourseDetail>({
     queryKey: ['course', manageCourse?.course_id],
-    queryFn: async () => api(`/api/courses/${manageCourse?.course_id}`, 'GET', token),
+    queryFn: async () => api<CourseDetail>(`/api/courses/${manageCourse?.course_id}`, 'GET', token),
     enabled: !!token && !!manageCourse && manageOpen,
   });
 
@@ -298,7 +291,7 @@ const CoursesPage: React.FC = () => {
                   </TableHeader>
                   <TableBody>
                     {courseDetail?.enrollments?.length
-                      ? courseDetail.enrollments.map((e: any) => (
+                      ? courseDetail.enrollments.map((e: Enrollment) => (
                         <TableRow key={e.id}>
                           <TableCell>{`${e.student?.user?.first_name ?? ''} ${e.student?.user?.last_name ?? ''}`.trim()}</TableCell>
                           <TableCell>{e.student?.user?.email}</TableCell>

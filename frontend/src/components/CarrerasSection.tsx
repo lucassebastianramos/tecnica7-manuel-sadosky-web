@@ -16,13 +16,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import VocationalTest from './VocationalTest';
 import LogoLoop from '@/components/ui/LogoLoop';
+import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
 
 interface SpotlightCardProps {
   children: ReactNode;
@@ -110,7 +106,7 @@ const CarrerasSection = () => {
 
   return (
     <section id="carreras" className="bg-surface py-20" aria-labelledby="carreras-title">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           className="mb-16 space-y-4 text-center"

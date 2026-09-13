@@ -34,7 +34,7 @@ const ContactoSection = () => {
 
   return (
     <section id="contacto" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <h2 className="font-heading font-bold text-4xl lg:text-5xl text-foreground">

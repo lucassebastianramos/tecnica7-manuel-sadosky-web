@@ -1,5 +1,3 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { FileText, Files, CalendarDays, Phone, ThumbsUp, Users, Clock } from 'lucide-react';
 
@@ -105,8 +103,7 @@ const cardVariants = {
 const InscripcionPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 pt-32 pb-16">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Sidebar */}
           <aside className="lg:w-1/4 sticky top-28 h-fit bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -179,7 +176,6 @@ const InscripcionPage = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

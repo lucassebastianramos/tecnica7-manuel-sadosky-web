@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { FileText, Shield, Users, BookOpen, Scaling, CheckCircle } from "lucide-react";
 import { animate, motion } from "framer-motion";
 import {
@@ -177,8 +175,7 @@ const ReglamentoInterno = () => {
         />
       </motion.div>
 
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-16 pt-32 relative z-10">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-16 pt-32 relative z-10">
         <motion.div
           className="text-center space-y-8 mb-20"
           initial={{ opacity: 0, y: -20 }}
@@ -304,7 +301,6 @@ const ReglamentoInterno = () => {
           </Accordion>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

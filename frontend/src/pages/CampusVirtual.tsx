@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Calendar, GraduationCap, Star, Library, Activity, FileText, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,18 +5,23 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
+import { apiFetch } from "@/lib/api";
+import type { CampusGrade } from "@/types/admin";
+
+interface CampusSummary {
+  coursesCount?: number;
+  averageGrade?: number;
+  recentMaterialsCount?: number;
+  recentGrades?: CampusGrade[];
+}
 
 const CampusVirtual = () => {
   const { token, user } = useAuth();
   const role = user?.role;
 
-  const { data: summary, isLoading: loadingSummary } = useQuery({
+  const { data: summary, isLoading: loadingSummary } = useQuery<CampusSummary>({
     queryKey: ['campus-summary'],
-    queryFn: async () => {
-      const res = await fetch('/api/campus/my/summary', { headers: { Authorization: `Bearer ${token}` } });
-      if (!res.ok) throw new Error('No se pudo cargar el resumen');
-      return res.json();
-    },
+    queryFn: () => apiFetch<CampusSummary>('/api/campus/my/summary', { token }),
     enabled: !!token,
   });
 
@@ -77,7 +80,6 @@ const CampusVirtual = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
       <main className="flex-grow container mx-auto px-12 pt-32 pb-12">
         <motion.div
           className="text-center mb-12"
@@ -148,7 +150,7 @@ const CampusVirtual = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 text-sm">
-                    {summary.recentGrades.map((g: any) => (
+                    {summary.recentGrades.map((g: CampusGrade) => (
                       <li key={g.id} className="flex justify-between items-center p-2 border rounded-md hover:bg-gray-50">
                         <span className="truncate max-w-[160px]" title={g.title}>{g.title}</span>
                         <span className="font-semibold text-primary">{g.score}/{g.max_score}</span>
@@ -161,7 +163,6 @@ const CampusVirtual = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

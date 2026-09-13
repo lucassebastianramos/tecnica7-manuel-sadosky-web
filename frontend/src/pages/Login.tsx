@@ -17,8 +17,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useState } from 'react';
 import {
   FaRegCircle,
@@ -189,7 +187,6 @@ export function LoginPage() {
           </motion.div>
         ))}
       </div>
-      <Header />
       <main className="flex items-center justify-center min-h-[70vh]">
         <motion.div
           initial={{ opacity: 0, y: 80, scale: 0.9 }}
@@ -331,7 +328,6 @@ export function LoginPage() {
           </div>
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 }
