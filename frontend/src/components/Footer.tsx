@@ -18,6 +18,7 @@ const Footer = () => {
   ];
 
   const linksUtiles = [
+    { name: "Noticias y Novedades", href: "/noticias" },
     { name: "Campus Virtual", href: "/campus-virtual" },
     { name: "Biblioteca Digital", href: "/biblioteca-digital" },
     { name: "Sistema de Gestión", href: "/sistema-gestion" },
@@ -27,8 +28,8 @@ const Footer = () => {
   ];
 
   const redesSociales = [
-    { icon: Facebook, name: "Facebook", href: "#", color: "hover:text-blue-500" },
-    { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/tecnica7ldz", color: "hover:text-pink-500" },
+    { icon: Facebook, name: "Facebook", href: "https://www.facebook.com/tecnica7.banfield.3", color: "hover:text-blue-500" },
+    { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/tecnica7banfield/", color: "hover:text-pink-500" },
     { icon: Youtube, name: "YouTube", href: "https://www.youtube.com/@Tecnica7Banfield", color: "hover:text-red-500" }
   ];
 
@@ -132,9 +133,10 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/90">
+              <div className="flex items-start space-x-3">
+                <Mail className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                <div className="text-primary-foreground/90 text-sm space-y-0.5">
+                  <p>tecnica7lomasdezamora@abc.gob.ar</p>
                   <p>eet7lz@yahoo.com.ar</p>
                 </div>
               </div>
@@ -157,7 +159,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-primary-foreground/70">
-              <p>© 2025 E.E.S.T. N°7 Banfield. Todos los derechos reservados.</p>
+              <p>© {new Date().getFullYear()} E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo; — Banfield. Todos los derechos reservados.</p>
               <div className="flex space-x-4">
                 <Link to="/politica-de-privacidad" className="hover:text-white transition-colors duration-300">
                   Política de Privacidad

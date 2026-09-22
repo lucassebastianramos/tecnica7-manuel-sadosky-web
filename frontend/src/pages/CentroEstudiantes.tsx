@@ -61,8 +61,8 @@ const CentroEstudiantes = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white-50 dark:bg-gray-950">
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 sm:px-6 lg:px-8 pt-32 pb-16">
+    <div className="flex flex-col min-h-screen bg-background">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,8 +70,8 @@ const CentroEstudiantes = () => {
           className="flex flex-col sm:flex-row justify-between sm:items-center mb-12"
         >
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tighter">
-              Centro de Estudiantes
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tighter">
+              Centro de <span className="text-primary">Estudiantes</span>
             </h1>
             <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">
               Un recorrido por las gestiones estudiantiles.

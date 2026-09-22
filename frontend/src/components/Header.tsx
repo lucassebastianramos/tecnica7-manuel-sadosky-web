@@ -106,10 +106,14 @@ const Header = () => {
               <Mail className="h-3 w-3" aria-hidden="true" />
               <span>eet7lz@yahoo.com.ar</span>
             </div>
+            <div className="hidden lg:flex items-center space-x-1">
+              <Mail className="h-3 w-3" aria-hidden="true" />
+              <span>tecnica7lomasdezamora@abc.gob.ar</span>
+            </div>
           </div>
           <div className="hidden md:flex items-center space-x-1">
             <MapPin className="h-3 w-3" aria-hidden="true" />
-            <span>Manuel Acevedo 1864, Banfield</span>
+            <span>Manuel Acevedo 1864, Banfield (a 4 cuadras de la estación)</span>
           </div>
         </div>
       </div>
@@ -121,11 +125,11 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-3">
             <img src={logo} alt="Logo de la E.E.S.T. N°7" className="h-12 w-12" />
             <div>
-              <h1 className="font-heading font-bold text-lg text-foreground">
+              <h1 className="font-heading font-bold text-base sm:text-lg text-foreground leading-tight">
                 E.E.S.T. N°7
               </h1>
-              <p className="text-sm text-muted-foreground font-medium">
-                Banfield
+              <p className="text-xs sm:text-sm text-primary font-semibold">
+                &ldquo;Manuel Sadosky&rdquo; &bull; Banfield
               </p>
             </div>
           </Link>
@@ -150,7 +154,7 @@ const Header = () => {
             <Button
               asChild
               variant="default"
-              className="bg-gradient-primary hover:opacity-90 btn-glow font-semibold"
+              className="bg-gradient-primary hover:opacity-90 btn-glow font-semibold text-white shadow-sm"
             >
               <Link to="/inscripcion">Inscripciones</Link>
             </Button>
@@ -201,7 +205,7 @@ const Header = () => {
                 <Button
                   asChild
                   variant="default"
-                  className="bg-gradient-primary hover:opacity-90 w-full font-semibold mt-4"
+                  className="bg-gradient-primary hover:opacity-90 w-full font-semibold mt-4 text-white shadow-sm"
                 >
                   <Link to="/inscripcion">Inscripciones</Link>
                 </Button>

@@ -13,8 +13,8 @@ export const calendarData: CalendarMonthData[] = [
   {
     month: "Marzo",
     events: [
-      { day: "3-4", description: "Carnaval", type: "holiday" },
-      { day: "5", description: "Inicio del Ciclo Lectivo", type: "event" },
+      { day: "2", description: "Inicio del Ciclo Lectivo — Nivel Secundario y Educación Técnica (Oficial DGCyE)", type: "event" },
+      { day: "2-3", description: "Carnaval", type: "holiday" },
       { day: "7", description: "Jornada de reflexión por el Día Internacional de la Mujer", type: "event" },
       { day: "12", description: "Día del Escudo Nacional", type: "event" },
       { day: "17", description: "Iniciación del Ciclo Lectivo de Formación Profesional", type: "event" },
@@ -123,7 +123,7 @@ export const calendarData: CalendarMonthData[] = [
       { day: "11", description: "Día Nacional de la Medicina Social", type: "event" },
       { day: "11", description: "Día de los Intereses Argentinos en el Mar", type: "event" },
       { day: "18", description: "Jornada de Reflexión Atentado a la AMIA", type: "event" },
-      { day: "21 al 1/8", description: "Receso escolar de invierno", type: "recess" },
+      { day: "20 al 31/7", description: "Receso escolar de invierno (Oficial DGCyE PBA)", type: "recess" },
     ],
   },
   {

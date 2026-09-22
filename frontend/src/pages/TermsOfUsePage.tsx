@@ -35,7 +35,7 @@ const TermsOfUsePage = () => {
           transition={{ duration: 0.8, ease: "backOut" }}
         >
           <motion.div
-            className="w-28 h-28 bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-3xl flex items-center justify-center mx-auto shadow-xl relative overflow-hidden"
+            className="w-28 h-28 bg-gradient-to-br from-primary to-blue-700 rounded-3xl flex items-center justify-center mx-auto shadow-xl relative overflow-hidden"
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
@@ -54,10 +54,10 @@ const TermsOfUsePage = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h1 className="font-heading font-bold text-5xl lg:text-6xl text-foreground mb-4 text-center mt-16">
-            Términos de <span className="bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">Uso</span>
+            Términos de <span className="text-primary">Uso</span>
           </h1>
           <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto rounded-full mb-6"
+            className="w-24 h-1 bg-primary/40 mx-auto rounded-full mb-6"
             initial={{ width: 0 }}
             animate={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -68,12 +68,12 @@ const TermsOfUsePage = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-12 mb-8 border border-white/20"
+          className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-12 mb-8 border border-gray-200"
         >
           <div className="space-y-12">
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -81,13 +81,13 @@ const TermsOfUsePage = () => {
                 Aceptación de los Términos
               </motion.h2>
               <p className="text-gray-700 mb-4">
-                Al acceder y utilizar el sitio web de la E.E.S.T. N°7 "Taller Regional Quilmes", usted acepta cumplir con estos términos de uso. Si no está de acuerdo con alguna parte de estos términos, le pedimos que no utilice nuestro sitio web.
+                Al acceder y utilizar el sitio web de la Escuela de Educación Secundaria Técnica N°7 &ldquo;Manuel Sadosky&rdquo; (Banfield, Lomas de Zamora), usted acepta cumplir con estos términos de uso. Si no está de acuerdo con alguna parte de estos términos, le pedimos que no utilice nuestro sitio web.
               </p>
             </section>
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -95,7 +95,7 @@ const TermsOfUsePage = () => {
                 Uso del Contenido
               </motion.h2>
               <p className="text-gray-700 mb-4">
-                Todo el contenido publicado en este sitio web, incluyendo texto, imágenes, logotipos, fotografías y material multimedia, es propiedad de la E.E.S.T. N°7 o se utiliza con los permisos correspondientes.
+                Todo el contenido publicado en este sitio web, incluyendo texto, imágenes, logotipos, fotografías y material multimedia, es propiedad de la E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo; o se utiliza con los permisos correspondientes.
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
                 <li>El contenido está protegido por las leyes de propiedad intelectual y derechos de autor.</li>
@@ -106,7 +106,7 @@ const TermsOfUsePage = () => {
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -125,7 +125,7 @@ const TermsOfUsePage = () => {
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -145,7 +145,7 @@ const TermsOfUsePage = () => {
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -153,13 +153,13 @@ const TermsOfUsePage = () => {
                 Enlaces Externos
               </motion.h2>
               <p className="text-gray-700 mb-4">
-                Nuestro sitio puede contener enlaces a sitios web de terceros. No nos hacemos responsables por el contenido, políticas de privacidad o prácticas de sitios web externos. La inclusión de cualquier enlace no implica respaldo o aprobación por parte de la E.E.S.T. N°7.
+                Nuestro sitio puede contener enlaces a sitios web de terceros. No nos hacemos responsables por el contenido, políticas de privacidad o prácticas de sitios web externos. La inclusión de cualquier enlace no implica respaldo o aprobación por parte de la E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo;.
               </p>
             </section>
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
@@ -167,13 +167,13 @@ const TermsOfUsePage = () => {
                 Modificaciones
               </motion.h2>
               <p className="text-gray-700 mb-4">
-                La E.E.S.T. N°7 se reserva el derecho de modificar estos términos de uso en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web. El uso continuado del sitio después de dichos cambios constituirá su aceptación de los mismos.
+                La E.E.S.T. N°7 &ldquo;Manuel Sadosky&rdquo; se reserva el derecho de modificar estos términos de uso en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web. El uso continuado del sitio después de dichos cambios constituirá su aceptación de los mismos.
               </p>
             </section>
 
             <section>
               <motion.h2 
-                className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent"
+                className="text-2xl font-bold mb-4 text-foreground"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -181,7 +181,7 @@ const TermsOfUsePage = () => {
                 Legislación Aplicable
               </motion.h2>
               <p className="text-gray-700 mb-4">
-                Estos términos de uso se rigen por las leyes de la República Argentina. Cualquier disputa relacionada con el uso del sitio web estará sujeta a la jurisdicción de los tribunales competentes de Quilmes, Buenos Aires.
+                Estos términos de uso se rigen por las leyes de la República Argentina. Cualquier disputa relacionada con el uso del sitio web estará sujeta a la jurisdicción de los tribunales competentes del Departamento Judicial de Lomas de Zamora, Provincia de Buenos Aires.
               </p>
             </section>
 
@@ -192,7 +192,7 @@ const TermsOfUsePage = () => {
               transition={{ duration: 0.5, delay: 0.7 }}
             >
               <p className="text-sm text-gray-500 italic">
-                Última actualización: Septiembre 2025
+                Última actualización: {new Date().getFullYear()}
               </p>
             </motion.section>
           </div>

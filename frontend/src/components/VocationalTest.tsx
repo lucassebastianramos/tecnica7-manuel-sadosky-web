@@ -138,10 +138,10 @@ const VocationalTest = ({ open, onOpenChange }) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] !bg-white !text-black">
+      <DialogContent className="sm:max-w-[600px] bg-white text-gray-900 border border-gray-200 shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center">Test Vocacional</DialogTitle>
-          <DialogDescription className="text-center">
+          <DialogTitle className="text-2xl font-bold text-center text-foreground">Test Vocacional</DialogTitle>
+          <DialogDescription className="text-center text-muted-foreground">
             Respondé del 1 al 10 qué tan de acuerdo estás con cada afirmación.
           </DialogDescription>
         </DialogHeader>
@@ -151,18 +151,18 @@ const VocationalTest = ({ open, onOpenChange }) => {
             <div className="space-y-6">
               {questions.map((question, index) => (
                 <div key={index} className="space-y-3">
-                  <label className="font-medium">
+                  <label className="font-medium text-foreground">
                     {index + 1}. {question.text}
                   </label>
                   <div className="flex items-center space-x-4">
-                    <span className="text-sm w-8 text-center font-bold text-blue-600">{answers[index]}</span>
+                    <span className="text-sm w-8 text-center font-bold text-primary">{answers[index]}</span>
                     <Slider
                       defaultValue={[answers[index]]}
                       min={1}
                       max={10}
                       step={1}
                       onValueChange={(value) => handleSliderChange(index, value)}
-                      className="[&_[role=slider]]:bg-blue-600 [&_[role=slider]]:border-blue-600 [&_[data-orientation=horizontal]]:bg-gray-200 [&_[data-orientation=horizontal]>[data-range=true]]:bg-blue-600"
+                      className="[&_[role=slider]]:bg-primary [&_[role=slider]]:border-primary [&_[data-orientation=horizontal]]:bg-gray-200 [&_[data-orientation=horizontal]>[data-range=true]]:bg-primary"
                     />
                   </div>
                 </div>
@@ -171,7 +171,7 @@ const VocationalTest = ({ open, onOpenChange }) => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-96">
-            <h3 className="text-xl font-bold mb-4">Tus Resultados</h3>
+            <h3 className="text-xl font-bold mb-4 text-foreground">Tus Resultados</h3>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -197,7 +197,7 @@ const VocationalTest = ({ open, onOpenChange }) => {
 
         <DialogFooter>
           {!results ? (
-            <Button onClick={calculateResults} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button onClick={calculateResults} className="w-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 shadow-md">
               Ver Resultados
             </Button>
           ) : (
@@ -206,7 +206,7 @@ const VocationalTest = ({ open, onOpenChange }) => {
                 setResults(null);
                 setAnswers(Array(questions.length).fill(5));
               }}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              className="w-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 shadow-md"
             >
               Hacer el test de nuevo
             </Button>

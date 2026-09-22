@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, AlertCircle, CheckCircle, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle, AlertCircle, CheckCircle, Facebook, Instagram, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,20 +32,20 @@ const ContactoPage = () => {
     {
       icon: Mail,
       title: "Email",
-      details: ["eet7lz@yahoo.com.ar", "secretaria.eest7@edu.ar"],
+      details: ["tecnica7lomasdezamora@abc.gob.ar", "eet7lz@yahoo.com.ar"],
       description: "Te respondemos en 24hs"
     },
     {
       icon: MapPin,
       title: "Dirección",
-      details: ["Manuel Acevedo 1864, Banfield", "Buenos Aires"],
-      description: "A 2 cuadras de la estación"
+      details: ["Manuel Acevedo 1864, Banfield", "Provincia de Buenos Aires"],
+      description: "a 4 cuadras de la estación"
     },
     {
       icon: Clock,
       title: "Horarios",
-      details: ["Lunes a Viernes: 08:00 - 21:00", "Sábados: 09:00 - 12:00"],
-      description: "Horario de atención al público"
+      details: ["Lunes a Viernes: 07:30 a 18:00", "Sábados y Domingos: Cerrado"],
+      description: "Horario de atención de Secretaría"
     }
   ];
 
@@ -53,7 +53,7 @@ const ContactoPage = () => {
     {
       icon: Instagram,
       name: "Instagram",
-      url: "https://www.instagram.com/tecnica7ldz?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+      url: "https://www.instagram.com/tecnica7banfield/",
     },
     {
       icon: Facebook,
@@ -179,10 +179,34 @@ const ContactoPage = () => {
                 </div>
 
 
-                {/* Map Placeholder */}
+                {/* Map */}
                 <Card className="card-elegant overflow-hidden">
+                  <div className="p-3.5 sm:p-4 bg-muted/40 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-foreground">
+                      <MapPin className="h-4 w-4 text-primary shrink-0" />
+                      <span>Manuel Acevedo 1864, Banfield &bull; Provincia de Buenos Aires (a 4 cuadras de la estación)</span>
+                    </div>
+                    <a
+                      href="https://maps.google.com/?q=Manuel+Acevedo+1864,+Banfield,+Provincia+de+Buenos+Aires"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-primary hover:underline font-semibold flex items-center gap-1 shrink-0"
+                    >
+                      <span>Abrir en Google Maps</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
                   <CardContent className="p-0">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.361994966678!2d-58.39415772439851!3d-34.7469950643793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd2955f210a47%3A0x6a386b8333434563!2sE.E.S.T%20N%C2%B07%20%22Rep%C3%BAblica%20de%20Montenegro%22!5e0!3m2!1ses-419!2sar!4v1724944360432!5m2!1ses-419!2sar" width="600" height="450" style={{border:0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                      src="https://maps.google.com/maps?q=Manuel+Acevedo+1864,+Banfield,+Provincia+de+Buenos+Aires&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="380"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Ubicación de Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadras de la estación)"
+                    />
                   </CardContent>
                 </Card>
               </div>

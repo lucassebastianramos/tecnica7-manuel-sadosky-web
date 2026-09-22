@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Files, CalendarDays, Phone, ThumbsUp, Users, Clock } from 'lucide-react';
 
@@ -8,84 +9,6 @@ const sidebarItems = [
   { label: "Fechas", href: "#fechas" },
   { label: "Contacto", href: "#contacto" },
   { label: "Vacantes", href: "#vacantes" },
-];
-
-const cardData = [
-  {
-    id: "inscripcion",
-    icon: FileText,
-    title: "Planilla de inscripción",
-    content: "Imprimir la planilla de inscripción que se adjunta en la página, completar y firmar.",
-    action: {
-      href: "/PlanillaInscripcion.pdf",
-      text: "Descargar Planilla",
-    }
-  },
-  {
-    id: "documentacion",
-    icon: Files,
-    title: "Documentación requerida",
-    content: "Documentación que debe presentar junto con la planilla de inscripción:",
-    list: [
-      "DNI del alumno (Original y Fotocopia).",
-      "Constancia de CUIL del alumno.",
-      "Partida de nacimiento del alumno (Original y Fotocopia).",
-      "Vacunas (Original y Fotocopia).",
-      "Título de Primaria o Constancia de finalización de 6° Grado. (Original y Fotocopia).",
-      "Certificado de ANALITICO INCOMPLETO EN TRAMITE (Para ingresantes en 2°, 3° o 4° AÑO).",
-      "DNI del Padre/Madre o Tutor (Original y Fotocopia).",
-      "Dos Folios tamaño oficio."
-    ]
-  },
-  {
-    id: "fechas",
-    icon: CalendarDays,
-    title: "Fechas importantes",
-    content: "Fechas de inscripción:",
-    list: [
-      "Inscripción presencial: del 10 al 20 de noviembre.",
-      "Horario: 8:30 a 12:00 y 13:30 a 16:00 hs.",
-      "Consultas: Secretaría de la escuela."
-    ]
-  },
-  {
-    id: "contacto",
-    icon: Phone,
-    title: "Contacto y consultas",
-    content: "¿Dudas o consultas? Puedes comunicarte con la Secretaría:",
-    list: [
-      "Teléfono: (011) 4248-6259",
-      "Email: eet7lz@yahoo.com.ar",
-      "Dirección: Manuel Acevedo 1864, Banfield"
-    ]
-  },
-  {
-    id: "recomendaciones",
-    icon: ThumbsUp,
-    title: "Recomendaciones",
-    content: "Recomendaciones para la inscripción:",
-    list: [
-        "Verifica que toda la documentación esté completa antes de presentarla.",
-        "Trae fotocopias legibles y originales.",
-        "Consulta por vacantes y requisitos específicos según el año de ingreso."
-    ]
-  },
-  {
-    id: "vacantes",
-    icon: Users,
-    title: "Vacantes y cupos",
-    content: "Las vacantes se asignan por orden de llegada y cumplimiento de requisitos. En caso de no obtener vacante, puedes consultar por lista de espera."
-  },
-  {
-    id: "turnos",
-    icon: Clock,
-    title: "Turnos y horarios",
-    content: "Turnos disponibles:",
-    list: [
-        "Turno mañana: 8:00 a 12:30 hs.",
-        "Turno tarde: 13:00 a 17:30 hs."
-    ]
-  }
 ];
 
 const cardVariants = {
@@ -101,6 +24,90 @@ const cardVariants = {
 };
 
 const InscripcionPage = () => {
+  const currentYear = new Date().getFullYear();
+  // Las inscripciones siempre corresponden al próximo ciclo lectivo
+  const enrollmentYear = currentYear + 1;
+
+  const cardData = useMemo(() => [
+    {
+      id: "inscripcion",
+      icon: FileText,
+      title: "Planilla de inscripción",
+      content: `Descargar la planilla oficial de inscripción de Nivel Secundario de la Provincia de Buenos Aires (DGCyE / ABC), completar de forma legible y firmar para el ciclo lectivo ${enrollmentYear}.`,
+      action: {
+        href: "https://abc.gob.ar/secretarias/sites/default/files/2023-08/Secundaria%20-%20Planilla%20de%20inscripci%C3%B3n.pdf",
+        text: "3- PLANILLA INSCRIPCION 2022 -SECUNDARIA - 12-9",
+      }
+    },
+    {
+      id: "documentacion",
+      icon: Files,
+      title: "Documentación requerida",
+      content: `Documentación obligatoria para presentar con la planilla para el ciclo lectivo ${enrollmentYear}:`,
+      list: [
+        "DNI del alumno (Original y Fotocopia).",
+        "Constancia de CUIL del alumno.",
+        "Partida de nacimiento del alumno (Original y Fotocopia).",
+        "Certificado de vacunas obligatorias (Original y Fotocopia).",
+        "Título de Primaria o Constancia de finalización de 6° Grado (Original y Fotocopia).",
+        "Certificado de ANALÍTICO INCOMPLETO EN TRÁMITE (Para ingresantes a 2°, 3° o 4° AÑO).",
+        "DNI del Padre/Madre o Tutor (Original y Fotocopia).",
+        "Dos folios tamaño oficio."
+      ]
+    },
+    {
+      id: "fechas",
+      icon: CalendarDays,
+      title: "Fechas importantes",
+      content: `Cronograma oficial de inscripción para el ciclo ${enrollmentYear}:`,
+      list: [
+        `Inscripción presencial general: 10 al 20 de noviembre de ${currentYear}.`,
+        `Período de remanentes y complementaria: febrero / marzo de ${enrollmentYear}.`,
+        "Horario de atención: 8:30 a 12:00 y 13:30 a 16:00 hs.",
+        "Consultas y recepción: Secretaría escolar (Manuel Acevedo 1864, Banfield)."
+      ]
+    },
+    {
+      id: "contacto",
+      icon: Phone,
+      title: "Contacto y consultas",
+      content: "¿Dudas o consultas sobre tu trámite? Comunicate con la Secretaría institucional:",
+      list: [
+        "Teléfonos: (011) 4248-6259 / 11 6523-3593",
+        "Emails oficiales: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar",
+        "Dirección: Manuel Acevedo 1864, Banfield (Provincia de Buenos Aires, a 4 cuadras de la estación)"
+      ]
+    },
+    {
+      id: "recomendaciones",
+      icon: ThumbsUp,
+      title: "Recomendaciones",
+      content: `Recomendaciones para el ingreso al ciclo lectivo ${enrollmentYear}:`,
+      list: [
+        "Verificá que toda la documentación esté completa y legible antes de concurrir.",
+        "Presentá siempre original y fotocopia de cada certificado para su cotejo.",
+        `Consultá por vacantes y requisitos específicos según el año de ingreso técnico (${enrollmentYear}).`
+      ]
+    },
+    {
+      id: "vacantes",
+      icon: Users,
+      title: "Vacantes y cupos",
+      content: "Las vacantes se asignan según el orden reglamentario de la DGCyE y cumplimiento de requisitos. En caso de no obtener vacante directa, podés solicitar inscripción en la lista de espera oficial."
+    },
+    {
+      id: "turnos",
+      icon: Clock,
+      title: "Turnos y horarios",
+      content: "Turnos de funcionamiento técnico:",
+      list: [
+        "Turno mañana: 7:30 a 12:00 hs.",
+        "Turno tarde: 13:00 a 17:30 hs.",
+        "Talleres y contraturnos: según división y especialidad."
+      ]
+    }
+  ], [currentYear, enrollmentYear]);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
@@ -133,10 +140,11 @@ const InscripcionPage = () => {
               className="mb-16 text-center"
             >
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Inscripciones <span className="text-primary">2025</span>
+                Inscripciones <span className="text-primary">{enrollmentYear}</span>
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Inscribite y comenzá tu camino técnico en la E.E.S.T N°7. Encuentra toda la información que necesitas para completar tu inscripción.
+                Inscribite y comenzá tu camino técnico en la E.E.S.T N°7 para el ciclo lectivo {enrollmentYear}.
+                Encontrá toda la información y documentación que necesitás para completar tu ingreso.
               </p>
             </motion.div>
 
@@ -164,8 +172,14 @@ const InscripcionPage = () => {
                     </ul>
                   )}
                   {card.action && (
-                    <div className="mt-auto">
-                      <a href={card.action.href} download className="inline-block bg-blue-600 text-white rounded-md px-6 py-2 font-semibold hover:bg-blue-700 transition-colors duration-300">
+                    <div className="mt-auto pt-4">
+                      <a
+                        href={card.action.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-6 py-2.5 font-semibold hover:bg-primary/90 transition-colors duration-300 shadow-sm"
+                      >
+                        <FileText className="w-4 h-4" />
                         {card.action.text}
                       </a>
                     </div>

@@ -26,19 +26,17 @@ const TestimoniosSection = () => {
     {
       nombre: "Alejo Mirarchi",
       rol: "Desarrollador Front-End principal",
-      testimonio: "La Técnica 7 no solo me formó como programador, sino que también me enseñó a trabajar en equipo y a liderar proyectos. Estoy orgulloso de haber egresado en 2025 (Todavia no) y de contribuir al desarrollo de la página de mi querida escuela.",
+      testimonio: "La Técnica 7 no solo me formó como programador, sino que también me enseñó a trabajar en equipo y a liderar proyectos. Estoy orgulloso de formar parte de esta comunidad y de contribuir al desarrollo de la plataforma web de mi querida escuela.",
       avatar: fotoAlejo,
       linkedin: "https://www.linkedin.com/in/alejo-mirarchi-b0a13b370/",
     },
     {
       nombre: "Juan Zavala",
-      rol: "Desarrollador de Front-End",
-      testimonio: "El camino hacia ser Desarrollador de Front-End nació en la Tecnica 7, donde la disciplina y el trabajo en equipo marcaron mi forma de tabajar. Hoy aplico esas lecciones para transformar ideas en realidades digitales, y mas para nuestra querida escuela q tanto nos a enseñado para ser esto realidad.",
+      rol: "Desarrollador Front-End",
+      testimonio: "El camino hacia ser desarrollador front-end nació en la Técnica 7, donde la disciplina y el trabajo en equipo marcaron mi forma de trabajar. Hoy aplico esas lecciones para transformar ideas en realidades digitales, y más para nuestra querida escuela que tanto nos ha enseñado para hacer esto realidad.",
       avatar: fotoJuan,
       linkedin: "https://www.linkedin.com/in/juan-sebastian-zavala-419a7a397",
     },
-    
-
   ];
 
   return (
@@ -49,7 +47,7 @@ const TestimoniosSection = () => {
             Testimonios de <span className="text-primary">Nuestros Egresados</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Ex-estudiantes egresados en 2025 y desarrolladores de esta página
+            Estudiantes, egresados y desarrolladores creadores de esta plataforma institucional
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

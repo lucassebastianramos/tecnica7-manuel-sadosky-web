@@ -113,7 +113,7 @@ const ReglamentoInterno = () => {
       icon: <BookOpen className="h-6 w-6 text-primary" />,
       content: (
         <div className="space-y-4">
-          <p>Principales pautas del ciclo lectivo 2024-2025 según el Régimen Académico N° 1650/24.</p>
+          <p>Principales pautas vigentes del ciclo lectivo según el Régimen Académico N° 1650/24 de la DGCyE.</p>
           <ul className="list-disc list-inside space-y-2 pl-4">
             <li>El ciclo lectivo se divide en dos cuatrimestres.</li>
             <li>La materia se aprueba con calificación de 7 a 10 en ambos cuatrimestres.</li>

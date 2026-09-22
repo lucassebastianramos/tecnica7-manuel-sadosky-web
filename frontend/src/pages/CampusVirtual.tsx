@@ -80,15 +80,15 @@ const CampusVirtual = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <main className="flex-grow container mx-auto px-12 pt-32 pb-12">
+      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 10 }}
           transition={{ duration: 0.50 }}
         >
-          <h1 className="font-heading font-bold text-4xl lg:text-5xl text-blak-600 mb-4">
-            Campus <span className="text-primary font-bold text-black">Virtual</span>
+          <h1 className="font-heading font-bold text-4xl lg:text-5xl text-foreground mb-4">
+            Campus <span className="text-primary">Virtual</span>
           </h1>
           <p className="text-xl text-muted-foreground mt-2">
             Tu portal de aprendizaje y colaboración.

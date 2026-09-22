@@ -48,7 +48,7 @@ const BolsaTrabajo = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="w-24 h-24 bg-gradient-to-br from-primary to-blue-700 rounded-3xl flex items-center justify-center mx-auto shadow-lg">
-            <Briefcase className="h-12 w-12 text-black" />
+            <Briefcase className="h-12 w-12 text-white" />
           </div>
           <h1 className="font-heading font-bold text-4xl lg:text-6xl text-foreground">
             Bolsa de <span className="text-primary">Trabajo</span>

@@ -99,9 +99,8 @@ const HeroSection = () => {
               </Button>
               <Button
                 asChild
-                variant="outline"
                 size="lg"
-                className="border-2 border-white/25 bg-white/5 px-8 py-6 text-lg font-bold text-white backdrop-blur-md transition-colors hover:bg-white/15 hover:text-white"
+                className="border-2 border-white/30 bg-white/10 px-8 py-6 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white/25 hover:text-white"
               >
                 <Link to="/tour-virtual">Tour Virtual</Link>
               </Button>
@@ -147,9 +146,9 @@ const HeroSection = () => {
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg">
                   <GraduationCap className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
-                <h2 className="font-heading text-xl font-bold text-white">Inscripciones abiertas</h2>
+                <h2 className="font-heading text-xl font-bold text-white">Inscripciones {new Date().getFullYear() + 1}</h2>
                 <p className="text-white/80">
-                  Iniciá tu futuro profesional en la escuela técnica líder de la zona sur.
+                  Iniciá tu futuro profesional en la escuela técnica líder de la zona sur para el ciclo {new Date().getFullYear() + 1}.
                 </p>
               </div>
 
@@ -157,16 +156,16 @@ const HeroSection = () => {
                 <li className="flex items-center justify-between gap-2">
                   <span className="inline-flex items-center gap-2">
                     <CalendarDays className="h-4 w-4 text-cyan-300" aria-hidden="true" />
-                    Inscripciones
+                    Ciclo Lectivo
                   </span>
-                  <span className="font-semibold">Febrero - Marzo</span>
+                  <span className="font-semibold">{new Date().getFullYear() + 1}</span>
                 </li>
                 <li className="flex items-center justify-between gap-2">
                   <span className="inline-flex items-center gap-2">
                     <BookOpen className="h-4 w-4 text-cyan-300" aria-hidden="true" />
                     Inicio de clases
                   </span>
-                  <span className="font-semibold">Marzo</span>
+                  <span className="font-semibold">Marzo {new Date().getFullYear() + 1}</span>
                 </li>
                 <li className="flex items-center justify-between gap-2">
                   <span className="inline-flex items-center gap-2">
@@ -181,7 +180,7 @@ const HeroSection = () => {
                 asChild
                 className="w-full rounded-xl bg-accent py-3 font-bold text-white shadow-lg transition-all duration-300 hover:bg-accent-light hover:shadow-xl"
               >
-                <Link to="/inscripcion">Inscribite Ahora</Link>
+                <Link to="/inscripcion">Inscribite para {new Date().getFullYear() + 1}</Link>
               </Button>
             </div>
           </motion.div>

@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,26 +9,26 @@ const ContactoSection = () => {
     {
       icon: Phone,
       title: "Teléfono",
-      details: ["Teléfono 1", "Teléfono 2"],
-      description: "Llamanos en horario de atención"
+      details: ["(011) 4248-6259", "11 6523-3593"],
+      description: "Llamanos en horario escolar"
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["eest7banfield@abc.gob.ar", "secretaria.eest7@edu.ar"],
-      description: "Te respondemos en 24hs"
+      details: ["tecnica7lomasdezamora@abc.gob.ar", "eet7lz@yahoo.com.ar"],
+      description: "Respondemos tus consultas institucionales"
     },
     {
       icon: MapPin,
       title: "Dirección",
-      details: ["Dirección de la escuela", "Ciudad, Provincia"],
-      description: "A 2 cuadras de la estación"
+      details: ["Manuel Acevedo 1864, Banfield", "Provincia de Buenos Aires"],
+      description: "a 4 cuadras de la estación"
     },
     {
       icon: Clock,
       title: "Horarios",
-      details: ["Lunes a Viernes: HH:MM - HH:MM", "Sábados: HH:MM - HH:MM"],
-      description: "Horario de atención al público"
+      details: ["Lunes a Viernes: 07:30 a 18:00", "Sábados y Domingos: Cerrado"],
+      description: "Horario de atención de Secretaría"
     }
   ];
 
@@ -84,21 +84,34 @@ const ContactoSection = () => {
               </div>
             </div>
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <Card className="card-elegant overflow-hidden">
-              <CardContent className="p-0">
-                <div className="bg-gradient-primary h-64 flex items-center justify-center text-white">
-                  <div className="text-center space-y-4">
-                    <MapPin className="h-12 w-12 mx-auto" />
-                    <div>
-                      <h4 className="font-heading font-bold text-xl">Ubicación</h4>
-                      <p className="text-white/90">Dirección de la escuela, Ciudad</p>
-                      <p className="text-sm text-white/80 mt-2">
-                        Fácil acceso por transporte público
-                      </p>
-                    </div>
-                  </div>
+              <div className="p-3.5 sm:p-4 bg-muted/40 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-foreground">
+                  <MapPin className="h-4 w-4 text-primary shrink-0" />
+                  <span>Manuel Acevedo 1864, Banfield &bull; Provincia de Buenos Aires (a 4 cuadras de la estación)</span>
                 </div>
+                <a
+                  href="https://maps.google.com/?q=Manuel+Acevedo+1864,+Banfield,+Provincia+de+Buenos+Aires"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary hover:underline font-semibold flex items-center gap-1 shrink-0"
+                >
+                  <span>Abrir en Google Maps</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+              <CardContent className="p-0">
+                <iframe
+                  src="https://maps.google.com/maps?q=Manuel+Acevedo+1864,+Banfield,+Provincia+de+Buenos+Aires&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="280"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadras de la estación)"
+                />
               </CardContent>
             </Card>
           </div>
