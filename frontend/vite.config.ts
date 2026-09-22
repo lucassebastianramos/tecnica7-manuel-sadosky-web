@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
     host: true,
     port: 8080,
     // allow specific external hostnames to avoid host-check blocking
-    allowedHosts: ['manuelsadosky.tecnica7ldz.edu.ar', 'localhost', '127.0.0.1'],
+    allowedHosts: ['tecnica7ldz.edu.ar', 'www.tecnica7ldz.edu.ar', 'manuelsadosky.tecnica7ldz.edu.ar', 'localhost', '127.0.0.1'],
     watch: {
       ignored: ['**/*.timestamp-*.mjs'],
     },

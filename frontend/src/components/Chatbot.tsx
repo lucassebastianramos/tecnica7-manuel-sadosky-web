@@ -109,6 +109,8 @@ const Chatbot = () => {
         fallbackText = 'Fundada en 1911, la E.E.S.T. N°7 cuenta con más de un siglo de trayectoria técnica en la región sur del Gran Buenos Aires, llevando con orgullo el nombre del ilustre científico argentino Dr. Manuel Sadosky.';
       } else if (lower.includes('instagram') || lower.includes('redes') || lower.includes('red social')) {
         fallbackText = 'Nuestro Instagram oficial es @tecnica7ldz (https://www.instagram.com/tecnica7ldz/). ¡Seguinos para enterarte de todas las novedades y eventos!';
+      } else if (lower.includes('web') || lower.includes('sitio') || lower.includes('pagina')) {
+        fallbackText = 'El sitio web oficial de la institución es https://tecnica7ldz.edu.ar.';
       }
       const errorMessage: ChatMessage = {
         role: 'model',
