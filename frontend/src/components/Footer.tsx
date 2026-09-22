@@ -29,7 +29,7 @@ const Footer = () => {
 
   const redesSociales = [
     { icon: Facebook, name: "Facebook", href: "https://www.facebook.com/tecnica7.banfield.3", color: "hover:text-blue-500" },
-    { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/tecnica7banfield/", color: "hover:text-pink-500" },
+    { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/tecnica7ldz/", color: "hover:text-pink-500" },
     { icon: Youtube, name: "YouTube", href: "https://www.youtube.com/@Tecnica7Banfield", color: "hover:text-red-500" }
   ];
 

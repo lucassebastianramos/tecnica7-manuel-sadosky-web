@@ -53,7 +53,7 @@ const ContactoPage = () => {
     {
       icon: Instagram,
       name: "Instagram",
-      url: "https://www.instagram.com/tecnica7banfield/",
+      url: "https://www.instagram.com/tecnica7ldz/",
     },
     {
       icon: Facebook,

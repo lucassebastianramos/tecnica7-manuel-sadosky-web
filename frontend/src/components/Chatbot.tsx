@@ -107,6 +107,8 @@ const Chatbot = () => {
         fallbackText = 'Los horarios generales son: Turno Mañana de 07:30 a 12:00 hs y Turno Tarde de 13:00 a 17:30 hs, con contraturnos de talleres y laboratorios según la división.';
       } else if (lower.includes('historia')) {
         fallbackText = 'Fundada en 1911, la E.E.S.T. N°7 cuenta con más de un siglo de trayectoria técnica en la región sur del Gran Buenos Aires, llevando con orgullo el nombre del ilustre científico argentino Dr. Manuel Sadosky.';
+      } else if (lower.includes('instagram') || lower.includes('redes') || lower.includes('red social')) {
+        fallbackText = 'Nuestro Instagram oficial es @tecnica7ldz (https://www.instagram.com/tecnica7ldz/). ¡Seguinos para enterarte de todas las novedades y eventos!';
       }
       const errorMessage: ChatMessage = {
         role: 'model',

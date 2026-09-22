@@ -25,7 +25,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Especialidades',
     date: 'Reciente',
     image: patioColegio,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
     featured: true,
   },
   {
@@ -35,7 +35,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Institucional',
     date: 'Convocatoria Abierta',
     image: fotoalumnos,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
     internalUrl: '/inscripcion',
     featured: true,
   },
@@ -46,7 +46,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Especialidades',
     date: 'Actividad en Taller',
     image: multimedios,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
     internalUrl: '/radio',
   },
   {
@@ -56,7 +56,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Comunidad',
     date: 'Acto Escolar',
     image: teatromalvinas,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
   },
   {
     id: 'nuevos-laboratorios',
@@ -65,7 +65,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Innovación',
     date: 'Gestión Institucional',
     image: escuela,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
   },
   {
     id: 'torneos-programacion',
@@ -74,7 +74,7 @@ export const schoolNewsData: NewsItem[] = [
     category: 'Especialidades',
     date: 'Certámenes Estudiantiles',
     image: programacion,
-    instagramUrl: 'https://www.instagram.com/tecnica7banfield/',
+    instagramUrl: 'https://www.instagram.com/tecnica7ldz/',
     internalUrl: '/programacion',
   },
 ];

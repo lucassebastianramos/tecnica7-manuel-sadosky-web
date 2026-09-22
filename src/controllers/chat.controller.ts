@@ -14,7 +14,7 @@ Dirección: Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadra
 Teléfono oficial: (011) 4248-6259
 Teléfono adicional: 11 6523-3593
 Correo electrónico: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar
-Instagram: https://www.instagram.com/tecnica7banfield/
+Instagram: https://www.instagram.com/tecnica7ldz/
 Orientaciones: Técnico en Programación y Técnico en Multimedios
 Horarios de atención: lunes a viernes de 07:30 a 18:00hs
 `;

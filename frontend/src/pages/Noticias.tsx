@@ -66,7 +66,7 @@ const Noticias = () => {
               />
               <div className="space-y-1">
                 <div className="flex items-center justify-center md:justify-start gap-2">
-                  <h2 className="font-heading text-xl font-bold text-slate-900">@tecnica7banfield</h2>
+                  <h2 className="font-heading text-xl font-bold text-slate-900">@tecnica7ldz</h2>
                   <Instagram className="w-5 h-5 text-pink-500" />
                 </div>
                 <p className="text-sm text-slate-600">
@@ -80,7 +80,7 @@ const Noticias = () => {
               className="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-semibold rounded-xl shadow-sm shrink-0"
             >
               <a
-                href="https://www.instagram.com/tecnica7banfield/"
+                href="https://www.instagram.com/tecnica7ldz/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
