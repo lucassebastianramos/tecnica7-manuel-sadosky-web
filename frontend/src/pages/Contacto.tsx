@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, AlertCircle, CheckCircle, Facebook, Instagram, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, MessageCircle, AlertCircle, CheckCircle, Facebook, Instagram, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,12 +23,6 @@ const ContactoPage = () => {
   const [status, setStatus] = useState({ loading: false, error: '', success: '' });
 
   const contactInfo = [
-    {
-      icon: Phone,
-      title: "Teléfono",
-      details: ["(011) 4248-6259", "11 6523-3593"],
-      description: "Llamanos en horario de atención"
-    },
     {
       icon: Mail,
       title: "Email",

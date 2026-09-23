@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Files, CalendarDays, Phone, ThumbsUp, Users, Clock } from 'lucide-react';
+import { FileText, Files, CalendarDays, Mail, ThumbsUp, Users, Clock } from 'lucide-react';
 
 const sidebarItems = [
   { label: "Inicio", href: "#inicio" },
@@ -69,13 +69,13 @@ const InscripcionPage = () => {
     },
     {
       id: "contacto",
-      icon: Phone,
+      icon: Mail,
       title: "Contacto y consultas",
       content: "¿Dudas o consultas sobre tu trámite? Comunicate con la Secretaría institucional:",
       list: [
-        "Teléfonos: (011) 4248-6259 / 11 6523-3593",
         "Emails oficiales: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar",
-        "Dirección: Manuel Acevedo 1864, Banfield (Provincia de Buenos Aires, a 4 cuadras de la estación)"
+        "Dirección: Manuel Acevedo 1864, Banfield (Provincia de Buenos Aires, a 4 cuadras de la estación)",
+        "Horario de atención: lunes a viernes de 07:30 a 18:00 hs."
       ]
     },
     {

@@ -1,5 +1,4 @@
 import { 
-  Phone, 
   Mail, 
   MapPin, 
   Facebook, 
@@ -122,14 +121,6 @@ const Footer = () => {
                   <p className="text-sm text-primary-foreground/70 mt-1">
                     a 4 cuadras de la estación
                   </p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-accent flex-shrink-0" />
-                <div className="text-primary-foreground/90">
-                  <p>(011) 4248-6259</p>
-                  <p>11 6523-3593</p>
                 </div>
               </div>
 

@@ -101,8 +101,10 @@ const Chatbot = () => {
         fallbackText = 'Las inscripciones se encuentran abiertas para el próximo ciclo lectivo. Podés descargar la planilla oficial de la DGCyE en la sección "Inscripciones" de nuestra web y presentarla en la Secretaría (Manuel Acevedo 1864, Banfield).';
       } else if (lower.includes('carrera') || lower.includes('orientaci') || lower.includes('especialidad')) {
         fallbackText = 'La E.E.S.T. N°7 ofrece dos especialidades técnicas de nivel superior: Técnico en Programación y Técnico en Multimedios (ambas de 4 años), precedidas por los 3 años de Ciclo Básico común.';
-      } else if (lower.includes('contacto') || lower.includes('telefono') || lower.includes('donde') || lower.includes('direcci') || lower.includes('ubicaci') || lower.includes('mail') || lower.includes('correo')) {
-        fallbackText = 'Estamos ubicados en Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadras de la estación). Teléfonos: (011) 4248-6259 / 11 6523-3593. Emails oficiales: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar. Horario: lunes a viernes de 07:30 a 18:00 hs.';
+      } else if (lower.includes('contacto') || lower.includes('donde') || lower.includes('direcci') || lower.includes('ubicaci') || lower.includes('mail') || lower.includes('correo')) {
+        fallbackText = 'Estamos ubicados en Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadras de la estación). Podés contactarnos a los correos oficiales: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar. Horario de atención: lunes a viernes de 07:30 a 18:00 hs.';
+      } else if (lower.includes('telefono') || lower.includes('celular') || lower.includes('whatsapp')) {
+        fallbackText = 'Actualmente la escuela no cuenta con líneas telefónicas activas. La comunicación oficial se realiza por correo electrónico (tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar) o personalmente en la Secretaría (Manuel Acevedo 1864, Banfield).';
       } else if (lower.includes('horario')) {
         fallbackText = 'Los horarios generales son: Turno Mañana de 07:30 a 12:00 hs y Turno Tarde de 13:00 a 17:30 hs, con contraturnos de talleres y laboratorios según la división.';
       } else if (lower.includes('historia')) {

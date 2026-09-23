@@ -11,13 +11,12 @@ export const handleChat = async (req: Request, res: Response) => {
   // Prompt engineering: instrucción de sistema para limitar el asistente
   const datosActuales = `
 Dirección: Manuel Acevedo 1864, Banfield, Provincia de Buenos Aires (a 4 cuadras de la estación)
-Teléfono oficial: (011) 4248-6259
-Teléfono adicional: 11 6523-3593
 Correo electrónico: tecnica7lomasdezamora@abc.gob.ar / eet7lz@yahoo.com.ar
 Sitio Web oficial: https://tecnica7ldz.edu.ar
 Instagram: https://www.instagram.com/tecnica7ldz/
 Orientaciones: Técnico en Programación y Técnico en Multimedios
 Horarios de atención: lunes a viernes de 07:30 a 18:00hs
+Canales de contacto: Por el momento no disponemos de atención telefónica; el contacto oficial se realiza vía correo electrónico o personalmente en Secretaría.
 `;
   const schoolName = 'Escuela de Educación Secundaria Técnica N°7 "Manuel Sadosky" de Banfield, Lomas de Zamora';
   const website = "tecnica7ldz.edu.ar";

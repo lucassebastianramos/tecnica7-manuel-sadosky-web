@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, MessageCircle, ExternalLink } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,12 +6,6 @@ import { Textarea } from '@/components/ui/textarea';
 
 const ContactoSection = () => {
   const contactInfo = [
-    {
-      icon: Phone,
-      title: "Teléfono",
-      details: ["(011) 4248-6259", "11 6523-3593"],
-      description: "Llamanos en horario escolar"
-    },
     {
       icon: Mail,
       title: "Email",
@@ -194,22 +188,16 @@ const ContactoSection = () => {
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid gap-4">
+            <div>
               <Button 
-                variant="outline"
-                className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground font-bold py-3"
+                asChild
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 shadow-xs rounded-xl"
                 size="lg"
               >
-                <Phone className="mr-2 h-5 w-5" />
-                Llamar Ahora
-              </Button>
-              <Button 
-                variant="outline"
-                className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-3"
-                size="lg"
-              >
-                <Mail className="mr-2 h-5 w-5" />
-                Enviar Email
+                <a href="mailto:tecnica7lomasdezamora@abc.gob.ar">
+                  <Mail className="mr-2 h-5 w-5" />
+                  Enviar Email Oficial
+                </a>
               </Button>
             </div>
           </div>

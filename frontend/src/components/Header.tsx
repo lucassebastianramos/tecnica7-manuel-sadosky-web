@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, Phone, Mail, MapPin, LogOut, LayoutDashboard } from 'lucide-react';
+import { Menu, X, Mail, MapPin, LogOut, LayoutDashboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -95,20 +95,12 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
-              <Phone className="h-3 w-3" aria-hidden="true" />
-              <span>(011) 4248-6259</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Phone className="h-3 w-3" aria-hidden="true" />
-              <span>11 6523-3593</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Mail className="h-3 w-3" aria-hidden="true" />
-              <span>eet7lz@yahoo.com.ar</span>
-            </div>
-            <div className="hidden lg:flex items-center space-x-1">
               <Mail className="h-3 w-3" aria-hidden="true" />
               <span>tecnica7lomasdezamora@abc.gob.ar</span>
+            </div>
+            <div className="hidden sm:flex items-center space-x-1">
+              <Mail className="h-3 w-3" aria-hidden="true" />
+              <span>eet7lz@yahoo.com.ar</span>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-1">
