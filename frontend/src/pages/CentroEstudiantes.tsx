@@ -1,7 +1,7 @@
 import { ArrowUpRight, Calendar, Users, Vote, CheckCircle2, Clock, Sparkles } from "lucide-react";
 import UnidosPorLaLibertad from "@/assets/UnidosPorLaLibertad.jpeg";
 import CrearMasLibertad from "@/assets/Crear+Libertad.jpeg";
-import AvanceEstudiantil from "@/assets/AvanceEstudiantil.jpg";
+import LapizNegroFoto from "@/assets/AvanceEstudiantil.jpg";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +30,7 @@ const CentroEstudiantes = () => {
       period: "2025-2026",
       name: "Lápiz Negro",
       president: "Juan Ignacio Darias",
+      image: LapizNegroFoto,
       status: "Mandato finalizado (2026)",
       description: "Gestión con mandato concluido en 2026.",
     },
@@ -51,8 +52,8 @@ const CentroEstudiantes = () => {
       period: "2022-2023",
       name: "Avance Estudiantil",
       president: "Luz Roggerone",
-      image: AvanceEstudiantil,
       status: "Mandato cumplido",
+      description: "Gestión estudiantil histórica (registro de archivo sin fotografía conservada).",
     },
   ];
 
@@ -195,14 +196,14 @@ const CentroEstudiantes = () => {
                     </div>
                   ) : (
                     <div className="text-center p-6 max-w-md space-y-3">
-                      <div className="w-14 h-14 mx-auto rounded-2xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+                      <div className="w-14 h-14 mx-auto rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400">
                         <Users className="w-7 h-7" />
                       </div>
                       <h3 className="font-heading font-semibold text-base text-foreground">
-                        Lista Lápiz Negro
+                        {center.name}
                       </h3>
                       <p className="text-xs sm:text-sm text-muted-foreground">
-                        Gestión estudiantil de Juan Ignacio Darias. Mandato culminado en el ciclo 2026.
+                        Registro histórico de la gestión. Fotografía de archivo no conservada.
                       </p>
                     </div>
                   )}
