@@ -133,6 +133,21 @@ const NoticiasSection = () => {
           ))}
         </motion.div>
 
+        {/* View all news CTA under grid */}
+        <div className="mt-10 text-center">
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="border-2 border-primary/40 hover:border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold px-8 py-3 rounded-xl shadow-xs transition-all duration-200"
+          >
+            <Link to="/noticias" className="flex items-center gap-2">
+              <span>Ver Todas las Noticias</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
+        </div>
+
         {/* Official Instagram Live Channel Card */}
         <motion.div
           className="mt-14 max-w-3xl mx-auto"
@@ -180,12 +195,11 @@ const NoticiasSection = () => {
                 </Button>
                 <Button
                   asChild
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 font-semibold rounded-xl"
+                  className="border-2 border-white bg-white/10 hover:bg-white text-white hover:text-slate-900 font-bold rounded-xl shadow-md transition-all duration-200"
                 >
-                  <Link to="/noticias">
+                  <Link to="/noticias" className="flex items-center justify-center gap-2">
                     <span>Ver Todas</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Button>
               </div>
