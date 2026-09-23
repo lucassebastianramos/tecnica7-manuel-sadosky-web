@@ -1,24 +1,25 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Files, CalendarDays, Mail, ThumbsUp, Users, Clock } from 'lucide-react';
+import { FileText, Files, CalendarDays, Mail, ThumbsUp, Users, Clock, ExternalLink } from 'lucide-react';
 
 const sidebarItems = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Inscripción", href: "#inscripcion" },
-  { label: "Documentos", href: "#documentacion" },
-  { label: "Fechas", href: "#fechas" },
+  { label: "Planilla Oficial", href: "#inscripcion" },
+  { label: "Documentación", href: "#documentacion" },
+  { label: "Fechas Clave", href: "#fechas" },
   { label: "Contacto", href: "#contacto" },
   { label: "Vacantes", href: "#vacantes" },
+  { label: "Turnos y Horarios", href: "#turnos" },
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.2,
-      ease: "easeInOut" as const
+      duration: 0.3,
+      ease: "easeOut" as const
     }
   }
 };
@@ -59,11 +60,11 @@ const InscripcionPage = () => {
       id: "fechas",
       icon: CalendarDays,
       title: "Fechas importantes",
-      content: `Cronograma oficial de inscripción para el ciclo ${enrollmentYear}:`,
+      content: `Cronograma oficial de inscripción para el ciclo lectivo ${enrollmentYear}:`,
       list: [
         `Inscripción presencial general: 10 al 20 de noviembre de ${currentYear}.`,
         `Período de remanentes y complementaria: febrero / marzo de ${enrollmentYear}.`,
-        "Horario de atención: 8:30 a 12:00 y 13:30 a 16:00 hs.",
+        "Horario de atención de Secretaría: lunes a viernes de 07:30 a 18:00 hs.",
         "Consultas y recepción: Secretaría escolar (Manuel Acevedo 1864, Banfield)."
       ]
     },
@@ -109,19 +110,19 @@ const InscripcionPage = () => {
   ], [currentYear, enrollmentYear]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Sidebar */}
-          <aside className="lg:w-1/4 sticky top-28 h-fit bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Navegación</h2>
+          <aside className="lg:w-1/4 sticky top-28 h-fit bg-card p-6 rounded-2xl shadow-xs border border-border/80">
+            <h2 className="text-xl font-heading font-bold mb-4 text-foreground">Navegación</h2>
             <nav>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {sidebarItems.map(item => (
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="block text-gray-600 hover:text-primary font-medium transition-colors duration-300"
+                      className="block text-muted-foreground hover:text-primary font-medium py-1.5 px-3 rounded-lg hover:bg-muted/60 transition-colors duration-200"
                     >
                       {item.label}
                     </a>
@@ -136,19 +137,19 @@ const InscripcionPage = () => {
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-              className="mb-16 text-center"
+              transition={{ duration: 0.3 }}
+              className="mb-14 text-center sm:text-left"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4 tracking-tight">
                 Inscripciones <span className="text-primary">{enrollmentYear}</span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Inscribite y comenzá tu camino técnico en la E.E.S.T N°7 para el ciclo lectivo {enrollmentYear}.
-                Encontrá toda la información y documentación que necesitás para completar tu ingreso.
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+                Inscribite y comenzá tu camino técnico en la E.E.S.T N°7 &ldquo;Manuel Sadosky&rdquo; para el ciclo lectivo {enrollmentYear}.
+                Encontrá toda la información oficial y documentación para completar tu ingreso.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {cardData.map((card) => (
                 <motion.div
                   key={card.id}
@@ -156,16 +157,16 @@ const InscripcionPage = () => {
                   variants={cardVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 flex flex-col"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="bg-card p-6 md:p-8 rounded-2xl shadow-xs border border-border/80 hover:shadow-md hover:border-primary/40 transition-all duration-300 flex flex-col"
                 >
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                    <card.icon className="w-6 h-6 mr-3 text-primary" />
-                    {card.title}
+                  <h3 className="text-xl md:text-2xl font-heading font-bold text-foreground mb-4 flex items-center">
+                    <card.icon className="w-6 h-6 mr-3 text-primary shrink-0" />
+                    <span>{card.title}</span>
                   </h3>
-                  <p className="text-gray-600 mb-4 flex-grow">{card.content}</p>
+                  <p className="text-muted-foreground mb-4 flex-grow leading-relaxed">{card.content}</p>
                   {card.list && (
-                    <ul className="list-disc pl-6 text-left text-gray-600 space-y-2 mb-4 flex-grow">
+                    <ul className="list-disc pl-5 text-left text-muted-foreground space-y-2 mb-4 flex-grow text-sm leading-relaxed">
                       {card.list.map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
@@ -177,10 +178,11 @@ const InscripcionPage = () => {
                         href={card.action.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-lg px-6 py-2.5 font-semibold hover:bg-primary/90 transition-colors duration-300 shadow-sm"
+                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-xl px-5 py-3 font-semibold hover:bg-primary/90 transition-all duration-200 shadow-xs hover:shadow-md"
                       >
-                        <FileText className="w-4 h-4" />
-                        {card.action.text}
+                        <FileText className="w-4 h-4 shrink-0" />
+                        <span className="text-sm font-bold">{card.action.text}</span>
+                        <ExternalLink className="w-3.5 h-3.5 ml-1 shrink-0 opacity-80" />
                       </a>
                     </div>
                   )}
